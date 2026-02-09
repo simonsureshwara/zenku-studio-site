@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/ui/reveal";
+import { TubesBackground } from "@/components/ui/neon-flow";
 import { services, faqs } from "@/data/content";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 
@@ -19,31 +20,37 @@ export default function Home() {
 
   return (
     <div className="mx-auto max-w-6xl space-y-24">
-      <section className="relative overflow-hidden rounded-[2rem] border border-black/10 bg-gradient-to-br from-white to-zinc-100 p-8 shadow-xl shadow-black/10 dark:border-white/10 dark:from-zinc-900 dark:to-zinc-950 md:p-14">
-        <motion.div
-          style={{ y }}
-          className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
-        />
-        <p className="mb-4 text-sm uppercase tracking-[0.2em] text-zinc-500">Premium Web Systems</p>
-        <h1 className="max-w-4xl text-4xl font-semibold leading-tight md:text-6xl">
-          Wir bauen Websites, die <span className="serif-accent">Leads</span> liefern – schnell,
-          messbar und visuell auf Premium-Niveau.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-zinc-600 dark:text-zinc-300">
-          Zenku Studio verbindet Conversion-Strategie, UI/UX und technische Exzellenz zu digitalen
-          Erlebnissen, die verkaufen.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            className="rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 font-medium text-white shadow-lg shadow-violet-500/30"
-            href="/contact"
-          >
-            Projekt anfragen
-          </Link>
-          <Link className="glass rounded-full px-6 py-3 font-medium" href="/projects">
-            Cases ansehen
-          </Link>
-        </div>
+      <section className="relative overflow-hidden rounded-[2rem] border border-black/10 shadow-xl shadow-black/10 dark:border-white/10">
+        <TubesBackground className="h-[100vh] rounded-[2rem]">
+          <motion.div
+            style={{ y }}
+            className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
+          />
+          <div className="flex h-full flex-col justify-center p-8 md:p-14">
+            <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">
+              Premium Web Systems
+            </p>
+            <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
+              Wir bauen Websites, die <span className="serif-accent">Leads</span> liefern – schnell,
+              messbar und visuell auf Premium-Niveau.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-white/80">
+              Zenku Studio verbindet Conversion-Strategie, UI/UX und technische Exzellenz zu digitalen
+              Erlebnissen, die verkaufen.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                className="rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 font-medium text-white shadow-lg shadow-violet-500/30"
+                href="/contact"
+              >
+                Projekt anfragen
+              </Link>
+              <Link className="glass rounded-full px-6 py-3 font-medium" href="/projects">
+                Cases ansehen
+              </Link>
+            </div>
+          </div>
+        </TubesBackground>
       </section>
 
       <Reveal>
