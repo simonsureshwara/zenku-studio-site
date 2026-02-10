@@ -56,6 +56,23 @@ export function Navbar() {
     },
   };
 
+  const ctaVariants: Variants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+        delay: 0.35,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      },
+    },
+    closed: {
+      opacity: 0,
+      y: 10,
+      transition: { duration: 0.25, ease: "easeInOut" },
+    },
+  };
+
   const closeMobileMenu = () => setMobileOpen(false);
   const navigateFromMobileMenu = (href: string) => {
     setPendingHref(href);
@@ -240,7 +257,7 @@ export function Navbar() {
                 ))}
               </motion.nav>
 
-              <motion.div className="mt-10" variants={itemVariants} initial="closed" animate="open" exit="closed">
+              <motion.div className="mt-10" variants={ctaVariants} initial="closed" animate="open" exit="closed">
                 <Link
                   href="/contact"
                   onClick={(e) => {

@@ -35,7 +35,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+      <body
+        suppressHydrationWarning
+        className={`${inter.variable} ${playfair.variable} antialiased`}
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <SmoothScroll />
           <Navbar />
