@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
+import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -18,30 +19,55 @@ const links = [
 export function Navbar() {
   const pathname = usePathname();
   const router = useRouter();
-  const [mobileMenuState, setMobileMenuState] = useState<"closed" | "open" | "closing">(
-    "closed",
-  );
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
+  const menuButtonRef = useRef<HTMLButtonElement | null>(null);
+  const [menuOrigin, setMenuOrigin] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [menuRadius, setMenuRadius] = useState(0);
 
-  const isMobileMenuVisible = mobileMenuState !== "closed";
-  const isMobileMenuOpen = mobileMenuState === "open";
-
-  const openMobileMenu = () => setMobileMenuState("open");
-  const closeMobileMenu = () => {
-    setMobileMenuState((prev) => (prev === "closed" ? "closed" : "closing"));
-    window.setTimeout(() => setMobileMenuState("closed"), 250);
+  const listVariants: Variants = {
+    open: {
+      transition: {
+        delayChildren: 0.18,
+        staggerChildren: 0.06,
+      },
+    },
+    closed: {
+      transition: {
+        staggerChildren: 0.03,
+        staggerDirection: -1,
+      },
+    },
   };
 
+  const itemVariants: Variants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.45,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number],
+      },
+    },
+    closed: {
+      opacity: 0,
+      y: 10,
+      transition: { duration: 0.25, ease: "easeInOut" },
+    },
+  };
+
+  const closeMobileMenu = () => setMobileOpen(false);
   const navigateFromMobileMenu = (href: string) => {
-    closeMobileMenu();
-    window.setTimeout(() => router.push(href), 250);
+    setPendingHref(href);
+    setMobileOpen(false);
   };
 
   useEffect(() => {
-    setMobileMenuState("closed");
+    setMobileOpen(false);
   }, [pathname]);
 
   useEffect(() => {
-    if (!isMobileMenuVisible) return;
+    if (!mobileOpen) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") closeMobileMenu();
@@ -55,7 +81,7 @@ export function Navbar() {
       document.body.style.overflow = originalOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
-  }, [isMobileMenuVisible]);
+  }, [mobileOpen]);
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 mx-auto w-[min(980px,calc(100%-1.5rem))]">
@@ -80,12 +106,33 @@ export function Navbar() {
         </nav>
         <div className="flex items-center gap-2">
           <button
+            ref={menuButtonRef}
             type="button"
-            aria-label={isMobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
-            onClick={() => (isMobileMenuOpen ? closeMobileMenu() : openMobileMenu())}
+            aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+            onClick={() => {
+              if (mobileOpen) {
+                closeMobileMenu();
+                return;
+              }
+
+              const rect = menuButtonRef.current?.getBoundingClientRect();
+              const originX = rect ? rect.left + rect.width / 2 : window.innerWidth;
+              const originY = rect ? rect.top + rect.height / 2 : 0;
+
+              const distances = [
+                Math.hypot(originX - 0, originY - 0),
+                Math.hypot(originX - window.innerWidth, originY - 0),
+                Math.hypot(originX - 0, originY - window.innerHeight),
+                Math.hypot(originX - window.innerWidth, originY - window.innerHeight),
+              ];
+
+              setMenuOrigin({ x: originX, y: originY });
+              setMenuRadius(Math.max(...distances));
+              setMobileOpen(true);
+            }}
             className="inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 transition hover:bg-black/5 hover:text-zinc-950 dark:text-zinc-200 dark:hover:bg-white/10 dark:hover:text-white md:hidden"
           >
-            {isMobileMenuVisible ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
 
           <Link
@@ -97,81 +144,118 @@ export function Navbar() {
         </div>
       </div>
 
-      {isMobileMenuVisible && (
-        <div className="fixed inset-0 z-[60] md:hidden">
-          <button
-            type="button"
-            aria-label="Menü schließen"
-            onClick={closeMobileMenu}
-            className={cn(
-              "absolute inset-0 bg-black/60 backdrop-blur-xl transition-opacity duration-200 ease-in-out",
-              mobileMenuState === "closing" ? "opacity-0" : "opacity-100",
-            )}
-          />
-          <div
-            className={cn(
-              "relative mx-auto flex h-full w-full max-w-3xl flex-col px-6 py-8 transition-[transform,opacity] duration-200 ease-in-out",
-              mobileMenuState === "closing"
-                ? "translate-y-2 opacity-0"
-                : "translate-y-0 opacity-100",
-            )}
+      <AnimatePresence
+        onExitComplete={() => {
+          if (pendingHref) {
+            router.push(pendingHref);
+            setPendingHref(null);
+          }
+        }}
+      >
+        {mobileOpen && (
+          <motion.div
+            className="fixed inset-0 z-[60] md:hidden"
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 1 }}
           >
-            <div className="flex items-center justify-between">
-              <Link
-                href="/"
-                className="text-lg font-semibold tracking-tight text-white"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateFromMobileMenu("/");
-                }}
-              >
-                Zenku Studio
-              </Link>
-              <button
-                type="button"
-                aria-label="Menü schließen"
-                onClick={closeMobileMenu}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
-              >
-                <X className="h-6 w-6" />
-              </button>
-            </div>
+            <motion.button
+              type="button"
+              aria-label="Menü schließen"
+              onClick={closeMobileMenu}
+              className="absolute inset-0 bg-black/40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+            />
 
-            <nav className="mt-10 flex flex-1 flex-col gap-6">
-              {links.map(([href, label]) => (
+            <motion.div
+              className="absolute inset-0 bg-black/70 backdrop-blur-xl"
+              initial={{
+                clipPath: `circle(0px at ${menuOrigin.x}px ${menuOrigin.y}px)`,
+              }}
+              animate={{
+                clipPath: `circle(${menuRadius}px at ${menuOrigin.x}px ${menuOrigin.y}px)`,
+              }}
+              exit={{
+                clipPath: `circle(0px at ${menuOrigin.x}px ${menuOrigin.y}px)`,
+              }}
+              transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
+              onClick={closeMobileMenu}
+            />
+
+            <motion.div
+              className="relative mx-auto flex h-full w-full max-w-3xl flex-col px-6 py-8"
+              initial={{ opacity: 0, x: 18, y: -10 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              exit={{ opacity: 0, x: 18, y: -10 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
+            >
+              <div className="flex items-center justify-between">
                 <Link
-                  key={href}
-                  href={href}
+                  href="/"
+                  className="text-lg font-semibold tracking-tight text-white"
                   onClick={(e) => {
                     e.preventDefault();
-                    navigateFromMobileMenu(href);
+                    navigateFromMobileMenu("/");
                   }}
-                  className={cn(
-                    "relative w-fit text-3xl font-medium tracking-tight text-white/85 transition-colors hover:text-white",
-                    "after:absolute after:inset-x-0 after:-bottom-2 after:h-[3px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-fuchsia-500 after:via-cyan-400 after:to-lime-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
-                    pathname === href && "text-white after:scale-x-100",
-                  )}
                 >
-                  {label}
+                  Zenku Studio
                 </Link>
-              ))}
-            </nav>
+                <button
+                  type="button"
+                  aria-label="Menü schließen"
+                  onClick={closeMobileMenu}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+              </div>
 
-            <div className="mt-10">
-              <Link
-                href="/contact"
-                onClick={(e) => {
-                  e.preventDefault();
-                  navigateFromMobileMenu("/contact");
-                }}
-                className="block w-full rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-4 text-center text-base font-medium text-white shadow-lg shadow-violet-500/25"
+              <motion.nav
+                className="mt-10 flex flex-1 flex-col gap-6"
+                variants={listVariants}
+                initial="closed"
+                animate="open"
+                exit="closed"
               >
-                Call buchen
-              </Link>
-            </div>
-          </div>
-        </div>
-      )}
+                {links.map(([href, label]) => (
+                  <motion.div key={href} variants={itemVariants}>
+                    <Link
+                      href={href}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        navigateFromMobileMenu(href);
+                      }}
+                      className={cn(
+                        "relative w-fit text-3xl font-medium tracking-tight text-white/85 transition-colors hover:text-white",
+                        "after:absolute after:inset-x-0 after:-bottom-2 after:h-[3px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-fuchsia-500 after:via-cyan-400 after:to-lime-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+                        pathname === href && "text-white after:scale-x-100",
+                      )}
+                    >
+                      {label}
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.nav>
+
+              <motion.div className="mt-10" variants={itemVariants} initial="closed" animate="open" exit="closed">
+                <Link
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    navigateFromMobileMenu("/contact");
+                  }}
+                  className="block w-full rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-4 text-center text-base font-medium text-white shadow-lg shadow-violet-500/25"
+                >
+                  Call buchen
+                </Link>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
