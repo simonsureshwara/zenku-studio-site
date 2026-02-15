@@ -113,7 +113,7 @@ export function Navbar() {
               href={href}
               className={cn(
                 "relative px-3 py-2 text-sm text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white",
-                "after:absolute after:inset-x-3 after:bottom-1 after:h-[2px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-fuchsia-500 after:via-cyan-400 after:to-lime-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+                "after:absolute after:inset-x-3 after:bottom-1 after:h-[2px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-violet-500 after:to-cyan-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
                 pathname === href && "text-zinc-950 after:scale-x-100 dark:text-white",
               )}
             >
@@ -247,7 +247,7 @@ export function Navbar() {
                       }}
                       className={cn(
                         "relative w-fit text-3xl font-medium tracking-tight text-white/85 transition-colors hover:text-white",
-                        "after:absolute after:inset-x-0 after:-bottom-2 after:h-[3px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-fuchsia-500 after:via-cyan-400 after:to-lime-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
+                        "after:absolute after:inset-x-0 after:-bottom-2 after:h-[3px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-violet-500 after:to-cyan-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
                         pathname === href && "text-white after:scale-x-100",
                       )}
                     >
