@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, type ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Reveal } from "@/components/ui/reveal";
@@ -82,56 +83,101 @@ const processSteps = [
   },
 ];
 
+function SnapSection({
+  className,
+  children,
+  fullHeight = true,
+  snap = true,
+  contentPadding = true,
+}: {
+  className?: string;
+  children: ReactNode;
+  fullHeight?: boolean;
+  snap?: boolean;
+  contentPadding?: boolean;
+}) {
+  return (
+    <section
+      data-snap={snap ? "true" : "false"}
+      className={fullHeight ? "min-h-screen min-h-[100svh]" : ""}
+    >
+      <div
+        className={`${fullHeight ? "flex min-h-screen min-h-[100svh] w-full flex-col justify-center" : ""} ${fullHeight && contentPadding ? "py-12 md:py-16" : ""} ${className ?? ""}`}
+      >
+        {children}
+      </div>
+    </section>
+  );
+}
+
 export default function Home() {
   const { scrollY } = useScroll();
   const reduced = useReducedMotion();
   const y = useTransform(scrollY, [0, 500], [0, reduced ? 0 : 60]);
   const featuredTestimonial = projects.find((project) => project.testimonial)?.testimonial;
 
+  useEffect(() => {
+    document.documentElement.classList.add("home-snap");
+    document.body.classList.add("home-snap");
+
+    return () => {
+      document.documentElement.classList.remove("home-snap");
+      document.body.classList.remove("home-snap");
+    };
+  }, []);
+
   return (
     <div className="mx-auto max-w-6xl space-y-24">
-      <section className="relative overflow-hidden rounded-[2rem] border border-black/10 shadow-xl shadow-black/10 dark:border-white/10">
-        <TubesBackground className="h-[65vh] min-h-[520px] max-h-[700px] rounded-[2rem] md:h-[68vh]">
-          <motion.div
-            style={{ y }}
-            className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
-          />
-          <div className="flex h-full flex-col justify-center p-8 md:p-14">
-            <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">Zenku Studio</p>
-            <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
-              Digitale Infrastruktur fuer Unternehmen mit <span className="serif-accent">Wachstum</span>.
-            </h1>
-            <p className="mt-6 max-w-2xl text-lg text-white/80">
-              Strategie, Website, SEO und Performance - strukturiert betreut und langfristig optimiert.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                className="rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 font-medium text-white shadow-lg shadow-violet-500/30"
-                href="/contact"
-              >
-                Kostenloses Analysegespraech
-              </Link>
-              <Link className="glass rounded-full px-6 py-3 font-medium" href="/pricing">
-                Leistungen & Modelle ansehen
-              </Link>
-            </div>
+      <SnapSection
+        contentPadding={false}
+        snap
+        className="w-full"
+      >
+        <div className="relative flex min-h-screen min-h-[100svh] flex-col justify-center">
+          <section className="relative overflow-hidden rounded-[2rem] border border-black/10 shadow-xl shadow-black/10 dark:border-white/10">
+            <TubesBackground className="h-[60vh] min-h-[460px] max-h-[620px] rounded-[2rem] md:h-[62vh]">
+              <motion.div
+                style={{ y }}
+                className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
+              />
+              <div className="flex h-full flex-col justify-center p-8 md:p-14">
+                <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">Zenku Studio</p>
+                <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
+                  Digitale Infrastruktur fuer Unternehmen mit{" "}
+                  <span className="serif-accent">Wachstum</span>.
+                </h1>
+                <p className="mt-6 max-w-2xl text-lg text-white/80">
+                  Strategie, Website, SEO und Performance - strukturiert betreut und langfristig
+                  optimiert.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    className="rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 font-medium text-white shadow-lg shadow-violet-500/30"
+                    href="/contact"
+                  >
+                    Kostenloses Analysegespraech
+                  </Link>
+                  <Link className="glass rounded-full px-6 py-3 font-medium" href="/pricing">
+                    Leistungen & Modelle ansehen
+                  </Link>
+                </div>
+              </div>
+            </TubesBackground>
+          </section>
+
+          <div className="mt-4 grid gap-4 md:grid-cols-4">
+            {stats.map(([value, label]) => (
+              <article key={label} className="glass rounded-3xl p-6 text-center">
+                <p className="text-3xl font-semibold">{value}</p>
+                <p className="text-sm text-zinc-600 dark:text-zinc-300">{label}</p>
+              </article>
+            ))}
           </div>
-        </TubesBackground>
-      </section>
+        </div>
+      </SnapSection>
 
       <Reveal>
-        <section className="-mt-14 grid gap-4 md:-mt-20 md:grid-cols-4">
-          {stats.map(([value, label]) => (
-            <article key={label} className="glass rounded-3xl p-6 text-center">
-              <p className="text-3xl font-semibold">{value}</p>
-              <p className="text-sm text-zinc-600 dark:text-zinc-300">{label}</p>
-            </article>
-          ))}
-        </section>
-      </Reveal>
-
-      <Reveal>
-        <section>
+        <SnapSection>
           <h2 className="text-3xl font-semibold md:text-4xl">
             Viele Unternehmen investieren in Einzelmassnahmen - aber nicht in ein System.
           </h2>
@@ -152,11 +198,11 @@ export default function Home() {
             Zenku Studio uebernimmt die digitale Infrastruktur zentral: von der strategischen Basis bis zur
             laufenden Performance-Optimierung.
           </p>
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section>
+        <SnapSection>
           <h2 className="text-3xl font-semibold md:text-4xl">Das Zenku Wachstumssystem</h2>
           <p className="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-300">
             Drei klar definierte Modelle fuer unterschiedliche Wachstumsphasen.
@@ -186,11 +232,11 @@ export default function Home() {
               Leistungen & Preise im Detail
             </Link>
           </div>
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section>
+        <SnapSection>
           <h2 className="text-3xl font-semibold md:text-4xl">Leistungen mit klarem Geschaeftsnutzen</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {serviceOutcomes.map((service) => (
@@ -200,11 +246,11 @@ export default function Home() {
               </article>
             ))}
           </div>
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section className="glass rounded-[2rem] p-8 md:p-12">
+        <SnapSection className="glass rounded-[2rem] p-8 md:p-12">
           <h2 className="text-3xl font-semibold">Analyse, Aufbau, Optimierung</h2>
           <ol className="mt-8 grid gap-5 md:grid-cols-3">
             {processSteps.map((step, idx) => (
@@ -215,11 +261,11 @@ export default function Home() {
               </li>
             ))}
           </ol>
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section className="glass rounded-[2rem] p-8 md:p-12">
+        <SnapSection className="glass rounded-[2rem] p-8 md:p-12">
           <h2 className="text-3xl font-semibold md:text-4xl">Stimmen aus Projekten</h2>
           <blockquote className="mt-6 text-xl leading-relaxed">
             {featuredTestimonial?.quote ??
@@ -229,11 +275,11 @@ export default function Home() {
             {featuredTestimonial?.name ?? "Kundin aus dem Gesundheitsbereich"} -{" "}
             {featuredTestimonial?.role ?? "Geschaeftsfuehrung"}
           </p>
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section>
+        <SnapSection>
           <h2 className="text-3xl font-semibold md:text-4xl">Struktur statt Einzelperson</h2>
           <p className="mt-4 max-w-4xl text-zinc-600 dark:text-zinc-300">
             Zenku Studio arbeitet mit einem internationalen Netzwerk aus Strategen, Designern,
@@ -244,18 +290,18 @@ export default function Home() {
             Simon Sureshwara begleitet jedes Projekt als Lead Strategist und Ansprechpartner fuer
             Strategie, Priorisierung und Ergebnisqualitaet.
           </p>
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section>
+        <SnapSection>
           <h2 className="mb-6 text-3xl font-semibold">Haeufige Fragen</h2>
           <FaqAccordion items={faqs} />
-        </section>
+        </SnapSection>
       </Reveal>
 
       <Reveal>
-        <section className="glass rounded-[2rem] p-8 text-center md:p-12">
+        <SnapSection className="glass rounded-[2rem] p-8 text-center md:p-12">
           <h2 className="text-3xl font-semibold md:text-4xl">
             Lassen Sie uns Ihre digitale Infrastruktur strukturieren.
           </h2>
@@ -271,7 +317,7 @@ export default function Home() {
               Kostenloses Analysegespraech vereinbaren
             </Link>
           </div>
-        </section>
+        </SnapSection>
       </Reveal>
     </div>
   );

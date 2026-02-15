@@ -29,3 +29,21 @@ body {
 .glass {
   @apply border border-black/10 bg-white/60 backdrop-blur-xl dark:border-white/15 dark:bg-white/5;
 }
+
+html.home-snap,
+body.home-snap {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+section[data-snap="true"] {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.home-snap,
+  body.home-snap {
+    scroll-snap-type: none;
+  }
+}
