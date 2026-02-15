@@ -120,7 +120,7 @@ export default function Home() {
       </section>
 
       <Reveal>
-        <section className="grid gap-4 md:grid-cols-4">
+        <section className="-mt-14 grid gap-4 md:-mt-20 md:grid-cols-4">
           {stats.map(([value, label]) => (
             <article key={label} className="glass rounded-3xl p-6 text-center">
               <p className="text-3xl font-semibold">{value}</p>
