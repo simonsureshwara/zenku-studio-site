@@ -40,7 +40,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
-          <main className="px-4 pb-24 pt-24 md:px-8">
+          <main className="px-4 pb-24 pt-24 md:px-6 lg:px-8">
             <PageTransition>{children}</PageTransition>
           </main>
           <JsonLd data={jsonLd.organization} />

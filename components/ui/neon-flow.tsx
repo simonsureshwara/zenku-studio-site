@@ -14,13 +14,23 @@ interface TubesBackgroundProps {
   enableClickInteraction?: boolean;
 }
 
+type TubesRuntime = {
+  tubes: {
+    setColors: (colors: string[]) => void;
+    setLightsColors: (colors: string[]) => void;
+  };
+  destroy?: () => void;
+};
+
+type TubesCursorFactory = (canvas: HTMLCanvasElement, options: unknown) => TubesRuntime;
+
 export function TubesBackground({ 
   children, 
   className,
   enableClickInteraction = true 
 }: TubesBackgroundProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const tubesRef = useRef<any>(null);
+  const tubesRef = useRef<TubesRuntime | null>(null);
 
   useEffect(() => {
     let mounted = true;
@@ -34,9 +44,10 @@ export function TubesBackground({
           "https://cdn.jsdelivr.net/npm/threejs-components@0.0.19/build/cursors/tubes1.min.js";
         // We use the specific build from the CDN as it contains the exact effect requested
         // Using native dynamic import which works in modern browsers
-        // @ts-ignore
-        const module = await import(/* webpackIgnore: true */ tubesModuleUrl);
-        const TubesCursor = module.default;
+        const importedModule = (await import(/* webpackIgnore: true */ tubesModuleUrl)) as {
+          default: TubesCursorFactory;
+        };
+        const TubesCursor = importedModule.default;
 
         if (!mounted) return;
 

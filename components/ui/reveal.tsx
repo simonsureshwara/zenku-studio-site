@@ -14,7 +14,10 @@ export function Reveal({ children }: { children: ReactNode }) {
       ref={ref}
       initial={reduced ? undefined : { opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, ease: "easeOut" }}
+      transition={{
+        duration: 0.52,
+        ease: [0.22, 1, 0.36, 1],
+      }}
     >
       {children}
     </motion.div>

@@ -6,13 +6,14 @@ import { usePathname, useRouter } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/components/ui/button";
 
 const links = [
   ["/", "Start"],
   ["/projects", "Projekte"],
   ["/services", "Leistungen"],
   ["/pricing", "Preise"],
-  ["/about", "Über uns"],
+  ["/about", "Ueber uns"],
   ["/contact", "Kontakt"],
 ] as const;
 
@@ -80,10 +81,6 @@ export function Navbar() {
   };
 
   useEffect(() => {
-    setMobileOpen(false);
-  }, [pathname]);
-
-  useEffect(() => {
     if (!mobileOpen) return;
 
     const onKeyDown = (e: KeyboardEvent) => {
@@ -102,8 +99,8 @@ export function Navbar() {
 
   return (
     <header className="fixed inset-x-0 top-4 z-50 mx-auto w-[min(980px,calc(100%-1.5rem))]">
-      <div className="mx-auto flex items-center justify-between rounded-full border border-black/10 bg-white/75 px-4 py-2 shadow-lg shadow-black/10 backdrop-blur-xl dark:border-white/15 dark:bg-black/45 dark:shadow-black/40">
-        <Link href="/" className="font-semibold tracking-tight">
+      <div className="mx-auto flex items-center justify-between rounded-full border border-default bg-surface/85 px-4 py-2 shadow-depth-1 backdrop-blur-xl">
+        <Link href="/" className="font-semibold tracking-tight text-text">
           Zenku Studio
         </Link>
         <nav className="hidden items-center gap-1 md:flex">
@@ -111,10 +108,10 @@ export function Navbar() {
             <Link
               key={href}
               href={href}
+              data-active={pathname === href ? "true" : "false"}
               className={cn(
-                "relative px-3 py-2 text-sm text-zinc-600 transition-colors hover:text-zinc-950 dark:text-zinc-300 dark:hover:text-white",
-                "after:absolute after:inset-x-3 after:bottom-1 after:h-[2px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-violet-500 after:to-cyan-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
-                pathname === href && "text-zinc-950 after:scale-x-100 dark:text-white",
+                "ui-nav-link px-3 py-2 text-sm text-muted hover:text-text",
+                pathname === href && "text-text",
               )}
             >
               {label}
@@ -125,7 +122,7 @@ export function Navbar() {
           <button
             ref={menuButtonRef}
             type="button"
-            aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+            aria-label={mobileOpen ? "Menue schliessen" : "Menue oeffnen"}
             onClick={() => {
               if (mobileOpen) {
                 closeMobileMenu();
@@ -147,15 +144,12 @@ export function Navbar() {
               setMenuRadius(Math.max(...distances));
               setMobileOpen(true);
             }}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-zinc-700 transition hover:bg-black/5 hover:text-zinc-950 dark:text-zinc-200 dark:hover:bg-white/10 dark:hover:text-white md:hidden"
+            className="ui-transition inline-flex h-10 w-10 items-center justify-center rounded-full text-muted hover:bg-surface-2 hover:text-text md:hidden"
           >
             {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
 
-          <Link
-            href="/contact"
-            className="hidden rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-4 py-2 text-sm font-medium text-white shadow-md shadow-violet-500/25 md:inline-flex"
-          >
+          <Link href="/contact" className={cn(buttonVariants({ variant: "primary", size: "sm" }), "hidden md:inline-flex")}>
             Call buchen
           </Link>
         </div>
@@ -170,15 +164,10 @@ export function Navbar() {
         }}
       >
         {mobileOpen && (
-          <motion.div
-            className="fixed inset-0 z-[60] md:hidden"
-            initial={{ opacity: 1 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 1 }}
-          >
+          <motion.div className="fixed inset-0 z-[60] md:hidden" initial={{ opacity: 1 }} animate={{ opacity: 1 }} exit={{ opacity: 1 }}>
             <motion.button
               type="button"
-              aria-label="Menü schließen"
+              aria-label="Menue schliessen"
               onClick={closeMobileMenu}
               className="absolute inset-0 bg-black/40"
               initial={{ opacity: 0 }}
@@ -189,15 +178,9 @@ export function Navbar() {
 
             <motion.div
               className="absolute inset-0 bg-black/70 backdrop-blur-xl"
-              initial={{
-                clipPath: `circle(0px at ${menuOrigin.x}px ${menuOrigin.y}px)`,
-              }}
-              animate={{
-                clipPath: `circle(${menuRadius}px at ${menuOrigin.x}px ${menuOrigin.y}px)`,
-              }}
-              exit={{
-                clipPath: `circle(0px at ${menuOrigin.x}px ${menuOrigin.y}px)`,
-              }}
+              initial={{ clipPath: `circle(0px at ${menuOrigin.x}px ${menuOrigin.y}px)` }}
+              animate={{ clipPath: `circle(${menuRadius}px at ${menuOrigin.x}px ${menuOrigin.y}px)` }}
+              exit={{ clipPath: `circle(0px at ${menuOrigin.x}px ${menuOrigin.y}px)` }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
               onClick={closeMobileMenu}
             />
@@ -222,21 +205,15 @@ export function Navbar() {
                 </Link>
                 <button
                   type="button"
-                  aria-label="Menü schließen"
+                  aria-label="Menue schliessen"
                   onClick={closeMobileMenu}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/80 transition hover:bg-white/10 hover:text-white"
+                  className="ui-transition inline-flex h-11 w-11 items-center justify-center rounded-full text-white/80 hover:bg-white/10 hover:text-white"
                 >
                   <X className="h-6 w-6" />
                 </button>
               </div>
 
-              <motion.nav
-                className="mt-10 flex flex-1 flex-col gap-6"
-                variants={listVariants}
-                initial="closed"
-                animate="open"
-                exit="closed"
-              >
+              <motion.nav className="mt-10 flex flex-1 flex-col gap-6" variants={listVariants} initial="closed" animate="open" exit="closed">
                 {links.map(([href, label]) => (
                   <motion.div key={href} variants={itemVariants}>
                     <Link
@@ -246,10 +223,10 @@ export function Navbar() {
                         navigateFromMobileMenu(href);
                       }}
                       className={cn(
-                        "relative w-fit text-3xl font-medium tracking-tight text-white/85 transition-colors hover:text-white",
-                        "after:absolute after:inset-x-0 after:-bottom-2 after:h-[3px] after:origin-left after:scale-x-0 after:rounded-full after:bg-gradient-to-r after:from-violet-500 after:to-cyan-400 after:will-change-transform after:transition-transform after:duration-300 after:ease-in-out hover:after:scale-x-100",
-                        pathname === href && "text-white after:scale-x-100",
+                        "ui-nav-link relative w-fit text-3xl font-medium tracking-tight text-white/85 hover:text-white",
+                        pathname === href && "text-white",
                       )}
+                      data-active={pathname === href ? "true" : "false"}
                     >
                       {label}
                     </Link>
@@ -264,7 +241,7 @@ export function Navbar() {
                     e.preventDefault();
                     navigateFromMobileMenu("/contact");
                   }}
-                  className="block w-full rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-4 text-center text-base font-medium text-white shadow-lg shadow-violet-500/25"
+                  className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full")}
                 >
                   Call buchen
                 </Link>

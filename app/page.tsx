@@ -9,6 +9,9 @@ import { TubesBackground } from "@/components/ui/neon-flow";
 import { faqs } from "@/data/content";
 import { projects } from "@/data/projects";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
+import { buttonVariants } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
+import { cn } from "@/lib/utils";
 
 const primaryMetric = {
   value: "95+",
@@ -118,12 +121,13 @@ export default function Home() {
   const featuredTestimonial = projects.find((project) => project.testimonial)?.testimonial;
 
   return (
-    <div className="mx-auto max-w-6xl space-y-24">
+    <div className="mx-auto max-w-6xl space-y-[var(--section-gap)]">
       <SnapSection
+        fullHeight={false}
         contentPadding={false}
         className="w-full"
       >
-        <div className="relative flex min-h-screen min-h-[100svh] flex-col justify-center pt-2 md:pt-4">
+        <div className="relative flex max-h-[100svh] flex-col">
           <section className="relative overflow-hidden rounded-[2rem] border border-black/10 shadow-xl shadow-black/10 dark:border-white/10">
             <TubesBackground className="h-[58vh] min-h-[420px] max-h-[600px] rounded-[2rem] md:h-[58vh]">
               <motion.div
@@ -141,13 +145,10 @@ export default function Home() {
                   optimiert.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link
-                    className="rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 font-medium text-white shadow-lg shadow-violet-500/30"
-                    href="/contact"
-                  >
+                  <Link className={buttonVariants({ variant: "primary", size: "lg" })} href="/contact">
                     Kostenloses Analysegespraech
                   </Link>
-                  <Link className="glass rounded-full px-6 py-3 font-medium" href="/pricing">
+                  <Link className={buttonVariants({ variant: "secondary", size: "lg" })} href="/pricing">
                     Leistungen & Modelle ansehen
                   </Link>
                 </div>
@@ -155,18 +156,13 @@ export default function Home() {
             </TubesBackground>
           </section>
 
-          <div className="mt-3 grid gap-3 md:mt-4 md:grid-cols-12">
+          <div className="ui-3d-stage mt-[var(--hero-metrics-gap)] grid gap-[var(--hero-metrics-gap)] md:grid-cols-12">
             <motion.article
               initial={{ opacity: 0, y: 14 }}
               whileInView={{ opacity: 1, y: 0 }}
-              whileHover={{ y: -2, scale: 1.01 }}
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
-              className="relative overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-slate-700/35 to-slate-900/55 p-5 text-zinc-100 md:col-span-5 md:p-6"
-              style={{
-                boxShadow:
-                  "0 2px 4px rgba(0,0,0,.22), 0 4px 8px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.22)",
-              }}
+              className="ui-metric-card ui-metric-card--primary ui-transition ui-3d-card relative p-5 text-zinc-100 md:col-span-5 md:p-6"
             >
               <div className="mb-3 inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90">
                 <Gauge className="h-3 w-3" />
@@ -177,7 +173,7 @@ export default function Home() {
               <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/90 to-cyan-400/70" />
             </motion.article>
 
-            <div className="grid gap-4 md:col-span-7 md:grid-cols-7">
+            <div className="grid gap-[var(--hero-metrics-gap)] md:col-span-7 md:grid-cols-7">
               {secondaryMetrics.map((metric, idx) => {
                 const spanClass = idx === 0 ? "md:col-span-4" : idx === 1 ? "md:col-span-3" : "md:col-span-7";
                 return (
@@ -185,18 +181,13 @@ export default function Home() {
                     key={metric.label}
                     initial={{ opacity: 0, y: 14 }}
                     whileInView={{ opacity: 1, y: 0 }}
-                    whileHover={{ y: -2, scale: 1.01 }}
                     viewport={{ once: true, amount: 0.6 }}
                     transition={{
                       duration: 0.34,
                       ease: [0.22, 1, 0.36, 1],
                       delay: idx === 0 ? 0.06 : idx === 1 ? 0.12 : 0.18,
                     }}
-                    className={`relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-b from-slate-700/25 to-slate-900/45 p-4 md:p-4 text-zinc-100 ${spanClass}`}
-                    style={{
-                      boxShadow:
-                        "0 2px 4px rgba(0,0,0,.2), 0 4px 8px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.1), inset 0 -1px 0 rgba(0,0,0,.2)",
-                    }}
+                    className={`ui-metric-card ui-metric-card--secondary ui-transition ui-3d-card relative p-4 text-zinc-100 md:p-4 ${spanClass}`}
                   >
                     <p className="text-3xl font-semibold md:text-4xl">{metric.value}</p>
                     <p className="mt-1.5 max-w-[28ch] text-sm text-zinc-200">{metric.label}</p>
@@ -211,7 +202,7 @@ export default function Home() {
 
       <Reveal>
         <SnapSection>
-          <h2 className="text-3xl font-semibold md:text-4xl">
+          <h2 className="section-heading">
             Viele Unternehmen investieren in Einzelmassnahmen - aber nicht in ein System.
           </h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -227,7 +218,7 @@ export default function Home() {
               </article>
             ))}
           </div>
-          <p className="mt-6 max-w-3xl text-zinc-600 dark:text-zinc-300">
+          <p className="section-lead mt-6 max-w-3xl">
             Zenku Studio uebernimmt die digitale Infrastruktur zentral: von der strategischen Basis bis zur
             laufenden Performance-Optimierung.
           </p>
@@ -236,32 +227,30 @@ export default function Home() {
 
       <Reveal>
         <SnapSection>
-          <h2 className="text-3xl font-semibold md:text-4xl">Das Zenku Wachstumssystem</h2>
-          <p className="mt-3 max-w-3xl text-zinc-600 dark:text-zinc-300">
+          <h2 className="section-heading">Das Zenku Wachstumssystem</h2>
+          <p className="section-lead mt-3 max-w-3xl">
             Drei klar definierte Modelle fuer unterschiedliche Wachstumsphasen.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {systemModels.map((model) => (
-              <article key={model.name} className="glass rounded-3xl p-6 transition hover:-translate-y-1">
-                <p className="text-sm uppercase tracking-[0.15em] text-zinc-500 dark:text-zinc-400">
-                  {model.name}
-                </p>
-                <h3 className="mt-3 text-xl font-medium">{model.intro}</h3>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{model.fit}</p>
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-zinc-700 dark:text-zinc-200">
+              <Card key={model.name} className="ui-elevate p-6">
+                <p className="text-sm uppercase tracking-[0.15em] text-muted">{model.name}</p>
+                <CardTitle className="mt-3">{model.intro}</CardTitle>
+                <CardDescription className="mt-2 text-sm">{model.fit}</CardDescription>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm text-text/90">
                   {model.focus.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
-              </article>
+              </Card>
             ))}
           </div>
-          <p className="mt-6 text-zinc-600 dark:text-zinc-300">
+          <p className="mt-6 text-muted">
             Alle Modelle sind modular aufgebaut und klar definiert. Transparente Festpreise ab 1.490 EUR
             pro Monat.
           </p>
           <div className="mt-6">
-            <Link className="glass rounded-full px-6 py-3 font-medium" href="/pricing">
+            <Link className={buttonVariants({ variant: "secondary", size: "md" })} href="/pricing">
               Leistungen & Preise im Detail
             </Link>
           </div>
@@ -270,41 +259,43 @@ export default function Home() {
 
       <Reveal>
         <SnapSection>
-          <h2 className="text-3xl font-semibold md:text-4xl">Leistungen mit klarem Geschaeftsnutzen</h2>
+          <h2 className="section-heading">Leistungen mit klarem Geschaeftsnutzen</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {serviceOutcomes.map((service) => (
-              <article key={service.title} className="glass rounded-3xl p-6 transition hover:-translate-y-1">
-                <h3 className="text-xl font-medium">{service.title}</h3>
-                <p className="mt-2 text-zinc-600 dark:text-zinc-300">{service.description}</p>
-              </article>
+              <Card key={service.title} className="ui-elevate p-6">
+                <CardTitle>{service.title}</CardTitle>
+                <CardDescription className="mt-2">{service.description}</CardDescription>
+              </Card>
             ))}
           </div>
         </SnapSection>
       </Reveal>
 
       <Reveal>
-        <SnapSection className="glass rounded-[2rem] p-8 md:p-12">
-          <h2 className="text-3xl font-semibold">Analyse, Aufbau, Optimierung</h2>
+        <SnapSection className="glass rounded-[2rem] p-8 shadow-depth-1 md:p-12">
+          <h2 className="section-heading">Analyse, Aufbau, Optimierung</h2>
           <ol className="mt-8 grid gap-5 md:grid-cols-3">
             {processSteps.map((step, idx) => (
-              <li key={step.title} className="rounded-2xl border border-black/10 p-5 dark:border-white/10">
-                <p className="text-sm text-violet-500">0{idx + 1}</p>
-                <p className="mt-2 font-medium">{step.title}</p>
-                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-300">{step.description}</p>
-              </li>
+              <Card key={step.title} className="p-5">
+                <CardContent className="p-0">
+                  <p className="text-sm text-[var(--brand-400)]">0{idx + 1}</p>
+                  <p className="mt-2 text-xl font-medium leading-[1.2] text-text">{step.title}</p>
+                  <p className="mt-2 text-sm text-muted">{step.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </ol>
         </SnapSection>
       </Reveal>
 
       <Reveal>
-        <SnapSection className="glass rounded-[2rem] p-8 md:p-12">
-          <h2 className="text-3xl font-semibold md:text-4xl">Stimmen aus Projekten</h2>
+        <SnapSection className="glass rounded-[2rem] p-8 shadow-depth-1 md:p-12">
+          <h2 className="section-heading">Stimmen aus Projekten</h2>
           <blockquote className="mt-6 text-xl leading-relaxed">
             {featuredTestimonial?.quote ??
               "Die Zusammenarbeit war strukturiert, transparent und in der Umsetzung durchgehend verlaesslich."}
           </blockquote>
-          <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300">
+          <p className="mt-4 text-sm text-muted">
             {featuredTestimonial?.name ?? "Kundin aus dem Gesundheitsbereich"} -{" "}
             {featuredTestimonial?.role ?? "Geschaeftsfuehrung"}
           </p>
@@ -313,13 +304,13 @@ export default function Home() {
 
       <Reveal>
         <SnapSection>
-          <h2 className="text-3xl font-semibold md:text-4xl">Struktur statt Einzelperson</h2>
-          <p className="mt-4 max-w-4xl text-zinc-600 dark:text-zinc-300">
+          <h2 className="section-heading">Struktur statt Einzelperson</h2>
+          <p className="mt-4 max-w-4xl text-muted">
             Zenku Studio arbeitet mit einem internationalen Netzwerk aus Strategen, Designern,
             Entwicklern und Performance-Spezialisten. Die Zusammenarbeit wird zentral gesteuert, mit
             einem festen Ansprechpartner.
           </p>
-          <p className="mt-4 max-w-4xl text-zinc-600 dark:text-zinc-300">
+          <p className="mt-4 max-w-4xl text-muted">
             Simon Sureshwara begleitet jedes Projekt als Lead Strategist und Ansprechpartner fuer
             Strategie, Priorisierung und Ergebnisqualitaet.
           </p>
@@ -328,25 +319,22 @@ export default function Home() {
 
       <Reveal>
         <SnapSection>
-          <h2 className="mb-6 text-3xl font-semibold">Haeufige Fragen</h2>
+          <h2 className="section-heading mb-6">Haeufige Fragen</h2>
           <FaqAccordion items={faqs} />
         </SnapSection>
       </Reveal>
 
       <Reveal>
-        <SnapSection className="glass rounded-[2rem] p-8 text-center md:p-12">
-          <h2 className="text-3xl font-semibold md:text-4xl">
+        <SnapSection className="glass rounded-[2rem] p-8 text-center shadow-depth-1 md:p-12">
+          <h2 className="section-heading">
             Lassen Sie uns Ihre digitale Infrastruktur strukturieren.
           </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-zinc-600 dark:text-zinc-300">
+          <p className="mx-auto mt-4 max-w-3xl text-muted">
             In einem unverbindlichen Analysegespraech klaeren wir Ausgangslage, Potenziale und das
             passende Modell fuer Ihr Unternehmen.
           </p>
           <div className="mt-8">
-            <Link
-              className="rounded-full bg-gradient-to-r from-violet-600 to-cyan-500 px-6 py-3 font-medium text-white shadow-lg shadow-violet-500/30"
-              href="/contact"
-            >
+            <Link className={cn(buttonVariants({ variant: "primary", size: "lg" }), "mx-auto")} href="/contact">
               Kostenloses Analysegespraech vereinbaren
             </Link>
           </div>

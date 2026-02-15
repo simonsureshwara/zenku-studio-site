@@ -2,6 +2,7 @@
 
 import * as Accordion from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
+import { Card } from "@/components/ui/card";
 
 export function FaqAccordion({ items }: { items: { question: string; answer: string }[] }) {
   return (
@@ -10,17 +11,17 @@ export function FaqAccordion({ items }: { items: { question: string; answer: str
         <Accordion.Item
           key={item.question}
           value={`item-${i}`}
-          className="rounded-2xl border border-black/10 bg-white/70 px-5 dark:border-white/10 dark:bg-white/5"
+          className="overflow-hidden"
         >
-          <Accordion.Header>
-            <Accordion.Trigger className="flex w-full items-center justify-between py-4 text-left font-medium">
-              {item.question}
-              <ChevronDown className="h-4 w-4" />
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content className="pb-4 text-sm text-zinc-600 dark:text-zinc-300">
-            {item.answer}
-          </Accordion.Content>
+          <Card className="px-5">
+            <Accordion.Header>
+              <Accordion.Trigger className="focus-ring flex w-full items-center justify-between py-4 text-left text-base font-medium leading-[1.3] text-text">
+                {item.question}
+                <ChevronDown className="h-4 w-4 text-muted" />
+              </Accordion.Trigger>
+            </Accordion.Header>
+            <Accordion.Content className="pb-4 text-base text-muted">{item.answer}</Accordion.Content>
+          </Card>
         </Accordion.Item>
       ))}
     </Accordion.Root>
