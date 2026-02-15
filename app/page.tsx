@@ -10,28 +10,16 @@ import { faqs } from "@/data/content";
 import { projects } from "@/data/projects";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 
-const metrics = [
-  {
-    value: "95+",
-    label: "Lighthouse Performance im Durchschnitt",
-    context: "ueber Live-Projekte nach Relaunch",
-    priority: "primary",
-  },
-  {
-    value: "120+",
-    label: "umgesetzte Projekte",
-    priority: "secondary",
-  },
-  {
-    value: "50+",
-    label: "betreute Unternehmen",
-    priority: "secondary",
-  },
-  {
-    value: "Nachweisbar",
-    label: "Conversion-Steigerungen bei Relaunches",
-    priority: "secondary",
-  },
+const primaryMetric = {
+  value: "95+",
+  label: "Lighthouse Performance im Durchschnitt",
+  context: "ueber Live-Projekte nach Relaunch",
+};
+
+const secondaryMetrics = [
+  { value: "120+", label: "umgesetzte Projekte" },
+  { value: "50+", label: "betreute Unternehmen" },
+  { value: "Nachweisbar", label: "Conversion-Steigerungen bei Relaunches" },
 ];
 
 const systemModels = [
@@ -151,9 +139,9 @@ export default function Home() {
         snap
         className="w-full"
       >
-        <div className="relative flex min-h-screen min-h-[100svh] flex-col justify-center">
+        <div className="relative flex min-h-screen min-h-[100svh] flex-col justify-center pt-2 md:pt-4">
           <section className="relative overflow-hidden rounded-[2rem] border border-black/10 shadow-xl shadow-black/10 dark:border-white/10">
-            <TubesBackground className="h-[60vh] min-h-[460px] max-h-[620px] rounded-[2rem] md:h-[62vh]">
+            <TubesBackground className="h-[58vh] min-h-[420px] max-h-[600px] rounded-[2rem] md:h-[58vh]">
               <motion.div
                 style={{ y }}
                 className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
@@ -183,40 +171,56 @@ export default function Home() {
             </TubesBackground>
           </section>
 
-          <div className="metrics-grid mt-6">
-            {metrics.map((metric, idx) => {
-              const isPrimary = metric.priority === "primary";
-              const cardClass = isPrimary ? "metric-card--primary md:col-span-5" : "metric-card--secondary";
-              const secondaryClass = idx === 1 ? "md:col-span-4" : idx === 2 ? "md:col-span-3" : "md:col-span-7";
+          <div className="mt-3 grid gap-3 md:mt-4 md:grid-cols-12">
+            <motion.article
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{ y: -2, scale: 1.01 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
+              className="relative overflow-hidden rounded-3xl border border-white/20 bg-gradient-to-b from-slate-700/35 to-slate-900/55 p-5 text-zinc-100 md:col-span-5 md:p-6"
+              style={{
+                boxShadow:
+                  "0 2px 4px rgba(0,0,0,.22), 0 4px 8px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.22)",
+              }}
+            >
+              <div className="mb-3 inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90">
+                <Gauge className="h-3 w-3" />
+              </div>
+              <p className="text-4xl font-semibold md:text-5xl">{primaryMetric.value}</p>
+              <p className="mt-1.5 max-w-[28ch] text-[1rem] text-zinc-100">{primaryMetric.label}</p>
+              <p className="mt-1.5 text-xs text-zinc-400">{primaryMetric.context}</p>
+              <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/90 to-cyan-400/70" />
+            </motion.article>
 
-              return (
-                <motion.article
-                  key={metric.label}
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -2, scale: 1.01 }}
-                  viewport={{ once: true, amount: 0.6 }}
-                  transition={{
-                    duration: 0.36,
-                    ease: [0.22, 1, 0.36, 1],
-                    delay: isPrimary ? 0 : idx === 1 ? 0.06 : idx === 2 ? 0.12 : 0.18,
-                  }}
-                  className={`metric-card ${cardClass} ${isPrimary ? "" : secondaryClass}`}
-                >
-                  {isPrimary ? (
-                    <div className="mb-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90">
-                      <Gauge className="h-3.5 w-3.5" />
-                    </div>
-                  ) : null}
-                  <p className={isPrimary ? "text-5xl font-semibold md:text-6xl" : "text-4xl font-semibold md:text-5xl"}>
-                    {metric.value}
-                  </p>
-                  <p className="mt-2 max-w-[28ch] text-base text-zinc-200">{metric.label}</p>
-                  {isPrimary ? <p className="metric-kicker mt-2">{metric.context}</p> : null}
-                  <span className="metric-underline" />
-                </motion.article>
-              );
-            })}
+            <div className="grid gap-4 md:col-span-7 md:grid-cols-7">
+              {secondaryMetrics.map((metric, idx) => {
+                const spanClass = idx === 0 ? "md:col-span-4" : idx === 1 ? "md:col-span-3" : "md:col-span-7";
+                return (
+                  <motion.article
+                    key={metric.label}
+                    initial={{ opacity: 0, y: 14 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    whileHover={{ y: -2, scale: 1.01 }}
+                    viewport={{ once: true, amount: 0.6 }}
+                    transition={{
+                      duration: 0.34,
+                      ease: [0.22, 1, 0.36, 1],
+                      delay: idx === 0 ? 0.06 : idx === 1 ? 0.12 : 0.18,
+                    }}
+                    className={`relative overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-b from-slate-700/25 to-slate-900/45 p-4 md:p-4 text-zinc-100 ${spanClass}`}
+                    style={{
+                      boxShadow:
+                        "0 2px 4px rgba(0,0,0,.2), 0 4px 8px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.1), inset 0 -1px 0 rgba(0,0,0,.2)",
+                    }}
+                  >
+                    <p className="text-3xl font-semibold md:text-4xl">{metric.value}</p>
+                    <p className="mt-1.5 max-w-[28ch] text-sm text-zinc-200">{metric.label}</p>
+                    <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/80 to-cyan-400/60" />
+                  </motion.article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </SnapSection>
