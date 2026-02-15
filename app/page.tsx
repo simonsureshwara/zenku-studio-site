@@ -3,17 +3,35 @@
 import { useEffect, type ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { Gauge } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
 import { TubesBackground } from "@/components/ui/neon-flow";
 import { faqs } from "@/data/content";
 import { projects } from "@/data/projects";
 import { FaqAccordion } from "@/components/ui/faq-accordion";
 
-const stats = [
-  ["50+", "betreute Unternehmen"],
-  ["120+", "umgesetzte Projekte"],
-  ["95+", "Lighthouse Performance im Durchschnitt"],
-  ["Nachweisbar", "Conversion-Steigerungen bei Relaunches"],
+const metrics = [
+  {
+    value: "95+",
+    label: "Lighthouse Performance im Durchschnitt",
+    context: "ueber Live-Projekte nach Relaunch",
+    priority: "primary",
+  },
+  {
+    value: "120+",
+    label: "umgesetzte Projekte",
+    priority: "secondary",
+  },
+  {
+    value: "50+",
+    label: "betreute Unternehmen",
+    priority: "secondary",
+  },
+  {
+    value: "Nachweisbar",
+    label: "Conversion-Steigerungen bei Relaunches",
+    priority: "secondary",
+  },
 ];
 
 const systemModels = [
@@ -165,13 +183,40 @@ export default function Home() {
             </TubesBackground>
           </section>
 
-          <div className="mt-4 grid gap-4 md:grid-cols-4">
-            {stats.map(([value, label]) => (
-              <article key={label} className="glass rounded-3xl p-6 text-center">
-                <p className="text-3xl font-semibold">{value}</p>
-                <p className="text-sm text-zinc-600 dark:text-zinc-300">{label}</p>
-              </article>
-            ))}
+          <div className="metrics-grid mt-6">
+            {metrics.map((metric, idx) => {
+              const isPrimary = metric.priority === "primary";
+              const cardClass = isPrimary ? "metric-card--primary md:col-span-5" : "metric-card--secondary";
+              const secondaryClass = idx === 1 ? "md:col-span-4" : idx === 2 ? "md:col-span-3" : "md:col-span-7";
+
+              return (
+                <motion.article
+                  key={metric.label}
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -2, scale: 1.01 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{
+                    duration: 0.36,
+                    ease: [0.22, 1, 0.36, 1],
+                    delay: isPrimary ? 0 : idx === 1 ? 0.06 : idx === 2 ? 0.12 : 0.18,
+                  }}
+                  className={`metric-card ${cardClass} ${isPrimary ? "" : secondaryClass}`}
+                >
+                  {isPrimary ? (
+                    <div className="mb-4 inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white/90">
+                      <Gauge className="h-3.5 w-3.5" />
+                    </div>
+                  ) : null}
+                  <p className={isPrimary ? "text-5xl font-semibold md:text-6xl" : "text-4xl font-semibold md:text-5xl"}>
+                    {metric.value}
+                  </p>
+                  <p className="mt-2 max-w-[28ch] text-base text-zinc-200">{metric.label}</p>
+                  {isPrimary ? <p className="metric-kicker mt-2">{metric.context}</p> : null}
+                  <span className="metric-underline" />
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </SnapSection>
