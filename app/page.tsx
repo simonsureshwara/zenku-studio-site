@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import Link from "next/link";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { Gauge } from "lucide-react";
@@ -93,20 +93,15 @@ function SnapSection({
   className,
   children,
   fullHeight = true,
-  snap = true,
   contentPadding = true,
 }: {
   className?: string;
   children: ReactNode;
   fullHeight?: boolean;
-  snap?: boolean;
   contentPadding?: boolean;
 }) {
   return (
-    <section
-      data-snap={snap ? "true" : "false"}
-      className={fullHeight ? "min-h-screen min-h-[100svh]" : ""}
-    >
+    <section className={fullHeight ? "min-h-screen min-h-[100svh]" : ""}>
       <div
         className={`${fullHeight ? "flex min-h-screen min-h-[100svh] w-full flex-col justify-center" : ""} ${fullHeight && contentPadding ? "py-12 md:py-16" : ""} ${className ?? ""}`}
       >
@@ -122,21 +117,10 @@ export default function Home() {
   const y = useTransform(scrollY, [0, 500], [0, reduced ? 0 : 60]);
   const featuredTestimonial = projects.find((project) => project.testimonial)?.testimonial;
 
-  useEffect(() => {
-    document.documentElement.classList.add("home-snap");
-    document.body.classList.add("home-snap");
-
-    return () => {
-      document.documentElement.classList.remove("home-snap");
-      document.body.classList.remove("home-snap");
-    };
-  }, []);
-
   return (
     <div className="mx-auto max-w-6xl space-y-24">
       <SnapSection
         contentPadding={false}
-        snap
         className="w-full"
       >
         <div className="relative flex min-h-screen min-h-[100svh] flex-col justify-center pt-2 md:pt-4">

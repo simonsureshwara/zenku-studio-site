@@ -4,7 +4,6 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { PageTransition } from "@/components/layout/page-transition";
-import { SmoothScroll } from "@/components/layout/smooth-scroll";
 import { JsonLd } from "@/components/seo/json-ld";
 import { defaultMetadata, jsonLd } from "@/lib/seo";
 
@@ -40,9 +39,8 @@ export default function RootLayout({
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <SmoothScroll />
           <Navbar />
-          <main className="px-4 pb-24 pt-28 md:px-8">
+          <main className="px-4 pb-24 pt-24 md:px-8">
             <PageTransition>{children}</PageTransition>
           </main>
           <JsonLd data={jsonLd.organization} />
