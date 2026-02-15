@@ -91,7 +91,7 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-6xl space-y-24">
       <section className="relative overflow-hidden rounded-[2rem] border border-black/10 shadow-xl shadow-black/10 dark:border-white/10">
-        <TubesBackground className="h-[100vh] rounded-[2rem]">
+        <TubesBackground className="h-[65vh] min-h-[520px] max-h-[700px] rounded-[2rem] md:h-[68vh]">
           <motion.div
             style={{ y }}
             className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl"
