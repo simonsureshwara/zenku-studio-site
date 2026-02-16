@@ -14,34 +14,24 @@ import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/c
 import { cn } from "@/lib/utils";
 
 const primaryMetric = {
-  value: "10+",
-  label: "Jahre Erfahrung",
-  context: "in Webdesign, Entwicklung und Online-Marketing",
+  value: "95+",
+  label: "Lighthouse Performance im Durchschnitt",
+  context: "ueber Live-Projekte in Aufbau und Skalierung",
 };
 
-type SecondaryMetric = {
-  value: string;
-  label: string;
-  context?: string;
-};
-
-const secondaryMetrics: SecondaryMetric[] = [
+const secondaryMetrics = [
   { value: "120+", label: "umgesetzte Projekte" },
   { value: "50+", label: "betreute Unternehmen" },
-  {
-    value: "Case: bis zu 6x Umsatz in 24 Monaten",
-    label: "z. B. bei Vivere Vital nach Relaunch und Angebotsausbau",
-    context: "Einzelfall, abhaengig von Angebot, Vertrieb und Umsetzung",
-  },
+  { value: "Messbare Ergebnisse", label: "Conversion-Verbesserungen bei Aufbau und Skalierung" },
 ];
 
 const systemModels = [
   {
     name: "Foundation",
-    price: "990 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ / Monat",
+    price: "990 EUR / Monat",
     audience: "Handwerker & kleinere Dienstleister mit klar definiertem Angebot.",
     scope: [
-      "Bis zu 5 Hauptseiten (z. B. Start, Leistungen, ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œber uns)",
+      "Bis zu 5 Hauptseiten (z. B. Start, Leistungen, Ueber uns)",
       "Technisches Setup & Performance",
       "SEO-Grundstruktur",
       "Tracking & Analytics",
@@ -53,10 +43,10 @@ const systemModels = [
   },
   {
     name: "Growth",
-    price: "2.190 ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¬ / Monat",
+    price: "2.190 EUR / Monat",
     audience: "Wachsende Unternehmen mit mehreren Leistungen oder aktiver Kundengewinnung.",
     scope: [
-      "Bis zu 10 Hauptseiten (z. B. Start, Leistungen, ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œber uns)",
+      "Bis zu 10 Hauptseiten (z. B. Start, Leistungen, Ueber uns)",
       "Erweiterte SEO-Strategie",
       "Conversion-Optimierung",
       "Laufende Kampagnenbetreuung",
@@ -73,12 +63,12 @@ const systemModels = [
     scope: [
       "Individuelle Systemanalyse",
       "Flexible oder unbegrenzte Seitenstruktur",
-      "Passende Architektur fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r Ihr Ziel",
+      "Passende Architektur fuer Ihr Ziel",
       "Erweiterte Funnel- & Tracking-Systeme",
-      "Performance-Marketing auf mehreren KanÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤len",
+      "Performance-Marketing auf mehreren Kanaelen",
       "Flexibles Stundenkontingent",
     ],
-    positioning: "Strategische SystemfÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼hrung auf hÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶chstem Niveau.",
+    positioning: "Strategische Systemfuehrung auf hoechstem Niveau.",
     featured: false,
   },
 ];
@@ -87,27 +77,27 @@ const serviceOutcomes = [
   {
     title: "Websites, die Anfragen erzeugen",
     description:
-      "Klare Seitenstruktur, nachvollziehbare NutzerfÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼hrung und ein Setup, das Interessenten in konkrete Anfragen ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼berfÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼hrt.",
+      "Klare Seitenstruktur, nachvollziehbare Nutzerfuehrung und ein Setup, das Interessenten in konkrete Anfragen ueberfuehrt.",
   },
   {
     title: "Technische SEO als stabile Basis",
     description:
-      "Indexierbarkeit, Geschwindigkeit und Struktur als Grundlage fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r planbare Sichtbarkeit in der organischen Suche.",
+      "Indexierbarkeit, Geschwindigkeit und Struktur als Grundlage fuer planbare Sichtbarkeit in der organischen Suche.",
   },
   {
     title: "Sauberes Tracking & Analytics",
     description:
-      "Messbare Datenbasis fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r bessere Entscheidungen mit klaren Ereignissen, Funnels und Reportings.",
+      "Messbare Datenbasis fuer bessere Entscheidungen mit klaren Ereignissen, Funnels und Reportings.",
   },
   {
     title: "Kontinuierliche Conversion-Optimierung",
     description:
-      "RegelmÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ige Verbesserung von SchlÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼sselseiten auf Basis von Verhalten, Daten und geschÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ftlicher PrioritÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤t.",
+      "Regelmaessige Verbesserung von Schluesselseiten auf Basis von Verhalten, Daten und geschaeftlicher Prioritaet.",
   },
   {
     title: "Langfristige Wachstumsbegleitung",
     description:
-      "Strukturiertes Monatsmodell mit klaren Zielen, zentralem ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œberblick und laufender Weiterentwicklung.",
+      "Strukturiertes Monatsmodell mit klaren Zielen, zentralem Ueberblick und laufender Weiterentwicklung.",
   },
 ];
 
@@ -115,7 +105,7 @@ const processSteps = [
   {
     title: "Klarheit",
     description:
-      "Wir finden gemeinsam heraus, was Ihr Angebot online verkaufen soll ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ und was dafÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r jetzt wirklich zÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤hlt.",
+      "Wir finden gemeinsam heraus, was Ihr Angebot online verkaufen soll - und was dafuer jetzt wirklich zaehlt.",
   },
   {
     title: "System",
@@ -131,7 +121,7 @@ const processSteps = [
 
 const testimonial = {
   quote:
-    "Simon ist eingesprungen, als mein vorheriger Entwickler aufgegeben hat. Innerhalb weniger Tage hat er meine halbfertige Seite in eine voll funktionsfÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤hige Kursplattform verwandelt. Ich bin ihm fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r seine Geschwindigkeit, UnterstÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼tzung und VerlÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤sslichkeit unglaublich dankbar.",
+    "Simon ist eingesprungen, als mein vorheriger Entwickler aufgegeben hat. Innerhalb weniger Tage hat er meine halbfertige Seite in eine voll funktionsfaehige Kursplattform verwandelt. Ich bin ihm fuer seine Geschwindigkeit, Unterstuetzung und Verlaesslichkeit unglaublich dankbar.",
   name: "Torsten Acht",
   website: "teachmeyoga.de",
   photo: "/testimonials/torsten-acht.avif",
@@ -175,13 +165,13 @@ export default function Home() {
               <motion.div style={{ y }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
               <div className="flex h-full flex-col justify-center px-8 py-12 md:px-14 md:py-16">
                 <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">
-                  F&uuml;r Unternehmen, die online Kunden gewinnen wollen
+                  Für Unternehmen, die online Kunden gewinnen wollen
                 </p>
                 <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
                   Webdesign, Webentwicklung und Online-Marketing aus einer Hand
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg text-white/80">
-                  Wir bauen Websites, die Vertrauen schaffen und &uuml;ber SEO, Ads und Tracking messbar Anfragen bringen.
+                  Wir bauen Websites, die Vertrauen schaffen und über SEO, Ads und Tracking messbar Anfragen bringen.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
@@ -222,7 +212,6 @@ export default function Home() {
                   >
                     <p className="text-3xl font-semibold md:text-4xl">{metric.value}</p>
                     <p className="mt-1.5 max-w-[28ch] text-sm text-muted">{metric.label}</p>
-                    {metric.context ? <p className="mt-1 text-xs text-muted">{metric.context}</p> : null}
                     <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/80 to-cyan-400/60" />
                   </article>
                 );
@@ -238,7 +227,7 @@ export default function Home() {
           Unternehmen, die mit Zenku arbeiten
         </h2>
         <p className="mx-auto mt-2 max-w-3xl text-center text-sm text-muted">
-          AusgewÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤hlte Kunden aus Dienstleistung, Gesundheit, SaaS und E-Commerce.
+          Ausgewaehlte Kunden aus Dienstleistung, Gesundheit, SaaS und E-Commerce.
         </p>
 
         {reduced ? (
@@ -288,14 +277,14 @@ export default function Home() {
           <div className="grid items-center gap-6 lg:grid-cols-2">
             <div>
               <h2 className="section-heading max-w-[27ch]">
-                Sie mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶chten eine Website - aber wer kÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼mmert sich danach um Sichtbarkeit, Wartung und
+                Sie moechten eine Website - aber wer kuemmert sich danach um Sichtbarkeit, Wartung und
                 Wachstum?
               </h2>
               <ul className="mt-8 space-y-4">
                 {[
-                  "FÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r Design, Ads und Technik immer neue Ansprechpartner.",
+                  "Fuer Design, Ads und Technik immer neue Ansprechpartner.",
                   "Viele Stimmen. Kein System.",
-                  "Kein klarer ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œberblick.",
+                  "Kein klarer Ueberblick.",
                 ].map((point) => (
                   <li key={point} className="py-2">
                     <p className="flex items-start gap-3 text-lg font-medium leading-relaxed text-text">
@@ -335,13 +324,13 @@ export default function Home() {
 
             <div>
               <h2 className="section-heading max-w-[26ch]">
-                Ein Ansprechpartner. Ein System. Klarer ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œberblick.
+                Ein Ansprechpartner. Ein System. Klarer Ueberblick.
               </h2>
               <ul className="mt-8 space-y-4">
                 {[
                   "Website, Ads, Tracking und Wartung aus einer Hand.",
                   "Monatlich planbar statt Projekt-Chaos.",
-                  "Struktur statt EinzelmaÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸nahmen.",
+                  "Struktur statt Einzelmassnahmen.",
                 ].map((benefit) => (
                   <li key={benefit} className="py-2">
                     <p className="flex items-start gap-3 text-lg font-medium leading-relaxed text-text">
@@ -353,7 +342,7 @@ export default function Home() {
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link className={buttonVariants({ variant: "primary", size: "md" })} href="/contact">
-                  Kostenloses AnalysegesprÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ch
+                  Call buchen
                 </Link>
                 <Link className={buttonVariants({ variant: "secondary", size: "md" })} href="/pricing">
                   Leistungen & Preise ansehen
@@ -366,7 +355,7 @@ export default function Home() {
 
       <Reveal>
         <ContentFrame className="glass rounded-[2rem] p-8 shadow-depth-1 md:p-12">
-          <h2 className="section-heading">So lÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤uft die Zusammenarbeit ab</h2>
+          <h2 className="section-heading">So laeuft die Zusammenarbeit ab</h2>
           <p className="section-lead mt-3 max-w-3xl">
             Drei Schritte. Ein Ansprechpartner. Ein klares System.
           </p>
@@ -394,12 +383,12 @@ export default function Home() {
           <section className="mx-auto max-w-4xl text-center">
             <h2 className="section-heading">Was meine Kunden sagen</h2>
             <blockquote className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-muted md:text-2xl md:leading-[1.45]">
-              {`ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¾${testimonial.quote}ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ`}
+              {`${testimonial.quote}`}
             </blockquote>
             <div className="mt-10 inline-flex items-center gap-4 text-left">
               <img
                 src={testimonial.photo}
-                alt={`PortrÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤t von ${testimonial.name}`}
+                alt={`Portraet von ${testimonial.name}`}
                 loading="lazy"
                 decoding="async"
                 className="h-16 w-16 rounded-full border border-default object-cover shadow-depth-1"
@@ -416,7 +405,7 @@ export default function Home() {
       <Reveal>
         <ContentFrame>
           <div className="max-w-3xl">
-            <h2 className="section-heading">Das passende System fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r Ihr Wachstum</h2>
+            <h2 className="section-heading">Das passende System fuer Ihr Wachstum</h2>
             <p className="section-lead mt-3">
               Eine Website im monatlichen Modell. Mit Betreuung, Optimierung und klarer Struktur.
             </p>
@@ -452,7 +441,7 @@ export default function Home() {
 
       <Reveal>
         <ContentFrame>
-          <h2 className="section-heading">Leistungen mit klarem GeschÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ftsnutzen</h2>
+          <h2 className="section-heading">Leistungen mit klarem Geschaeftsnutzen</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {serviceOutcomes.map((service) => (
               <Card key={service.title} className="ui-elevate p-6">
@@ -473,15 +462,15 @@ export default function Home() {
             einem festen Ansprechpartner.
           </p>
           <p className="mt-4 max-w-4xl text-muted">
-            Simon Sureshwara begleitet jedes Projekt als Lead Strategist und Ansprechpartner fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r
-            Strategie, Priorisierung und ErgebnisqualitÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤t.
+            Simon Sureshwara begleitet jedes Projekt als Lead Strategist und Ansprechpartner fuer
+            Strategie, Priorisierung und Ergebnisqualitaet.
           </p>
         </ContentFrame>
       </Reveal>
 
       <Reveal>
         <ContentFrame>
-          <h2 className="section-heading mb-6">HÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ufige Fragen</h2>
+          <h2 className="section-heading mb-6">Haeufige Fragen</h2>
           <FaqAccordion items={faqs} />
         </ContentFrame>
       </Reveal>
@@ -492,12 +481,12 @@ export default function Home() {
             Lassen Sie uns Ihre digitale Infrastruktur strukturieren.
           </h2>
           <p className="mx-auto mt-4 max-w-3xl text-muted">
-            In einem unverbindlichen AnalysegesprÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ch klÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ren wir Ausgangslage, Potenziale und das
-            passende Modell fÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼r Ihr Unternehmen.
+            In einem unverbindlichen Analysegespraech klaeren wir Ausgangslage, Potenziale und das
+            passende Modell fuer Ihr Unternehmen.
           </p>
           <div className="mt-8">
             <Link className={cn(buttonVariants({ variant: "primary", size: "lg" }), "mx-auto")} href="/contact">
-              Kostenloses AnalysegesprÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤ch vereinbaren
+              Call buchen vereinbaren
             </Link>
           </div>
         </ContentFrame>
