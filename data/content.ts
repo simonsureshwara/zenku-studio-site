@@ -63,6 +63,44 @@ export const pricingTiers = [
   },
 ];
 
+export const clientLogos = [
+  {
+    name: "Purnam",
+    src: "/logos/purnam.svg",
+    alt: "Purnam Logo",
+  },
+  {
+    name: "Social Impact",
+    src: "/logos/social-impact.svg",
+    alt: "Social Impact Logo",
+  },
+  {
+    name: "Niraj Naik",
+    src: "/logos/niraj-naik.svg",
+    alt: "Niraj Naik Logo",
+  },
+  {
+    name: "Dr. Heart",
+    src: "/logos/dr-heart.svg",
+    alt: "Dr. Heart Logo",
+  },
+  {
+    name: "Boenig Seminare",
+    src: "/logos/boenig-seminare.svg",
+    alt: "Boenig Seminare Logo",
+  },
+  {
+    name: "Teach Surfing",
+    src: "/logos/teach-surfing.svg",
+    alt: "Teach Surfing Logo",
+  },
+  {
+    name: "Vivere Vital",
+    src: "/logos/vivere-vital.svg",
+    alt: "Vivere Vital Logo",
+  },
+];
+
 export const faqs = [
   {
     question: "Wie schnell kann Zenku Studio starten?",
