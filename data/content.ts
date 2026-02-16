@@ -66,37 +66,37 @@ export const pricingTiers = [
 export const clientLogos = [
   {
     name: "Purnam",
-    src: "/logos/purnam.svg",
+    src: "/logos/purnam-logo.avif",
     alt: "Purnam Logo",
   },
   {
     name: "Social Impact",
-    src: "/logos/social-impact.svg",
+    src: "/logos/social-impact-logo.avif",
     alt: "Social Impact Logo",
   },
   {
     name: "Niraj Naik",
-    src: "/logos/niraj-naik.svg",
+    src: "/logos/niraj-naik-logo.avif",
     alt: "Niraj Naik Logo",
   },
   {
-    name: "Dr. Heart",
-    src: "/logos/dr-heart.svg",
-    alt: "Dr. Heart Logo",
+    name: "Dr. Hertz",
+    src: "/logos/dr-hertz-logo.avif",
+    alt: "Dr. Hertz Logo",
   },
   {
     name: "Boenig Seminare",
-    src: "/logos/boenig-seminare.svg",
+    src: "/logos/boenig-seminare-logo.avif",
     alt: "Boenig Seminare Logo",
   },
   {
     name: "Teach Surfing",
-    src: "/logos/teach-surfing.svg",
+    src: "/logos/teach-surfing-logo.avif",
     alt: "Teach Surfing Logo",
   },
   {
     name: "Vivere Vital",
-    src: "/logos/vivere-vital.svg",
+    src: "/logos/vivere-vital-logo.avif",
     alt: "Vivere Vital Logo",
   },
 ];

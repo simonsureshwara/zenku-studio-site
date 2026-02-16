@@ -357,10 +357,11 @@ body {
 }
 
 .logo-ticker-item {
+  position: relative;
   display: inline-flex;
   flex: 0 0 auto;
-  width: clamp(10rem, 18vw, 14rem);
-  height: 5rem;
+  width: 230px;
+  height: 115px;
   align-items: center;
   justify-content: center;
   overflow: hidden;
@@ -377,7 +378,8 @@ body {
   width: 100%;
   max-width: 100%;
   object-fit: contain;
-  padding: 0.7rem;
+  object-position: center;
+  padding: 0;
   background: transparent;
   filter: saturate(0) grayscale(1);
   opacity: 0.78;

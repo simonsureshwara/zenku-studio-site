@@ -233,12 +233,15 @@ export default function Home() {
         {reduced ? (
           <ul className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
             {clientLogos.map((logo) => (
-              <li key={logo.name} className="glass flex h-20 items-center justify-center overflow-hidden rounded-2xl p-0">
+              <li
+                key={logo.name}
+                className="glass relative mx-auto flex h-[115px] w-[230px] items-center justify-center overflow-hidden rounded-2xl p-0"
+              >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  width={420}
-                  height={120}
+                  fill
+                  sizes="(max-width: 768px) 45vw, 22vw"
                   unoptimized
                   className="logo-mark"
                 />
@@ -255,8 +258,8 @@ export default function Home() {
                       <Image
                         src={logo.src}
                         alt={logo.alt}
-                        width={420}
-                        height={120}
+                        fill
+                        sizes="(max-width: 768px) 40vw, 14rem"
                         unoptimized
                         className="logo-mark"
                       />
