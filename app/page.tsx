@@ -246,7 +246,7 @@ export default function Home() {
             {clientLogos.map((logo) => (
               <li
                 key={logo.name}
-                className="glass mx-auto flex h-[115px] w-[230px] items-center justify-center overflow-hidden rounded-2xl p-0"
+                className="mx-auto inline-flex h-[115px] w-[230px] items-center justify-center overflow-hidden rounded-2xl border border-default bg-surface/70 p-0"
               >
                 <Image
                   src={logo.src}
@@ -254,29 +254,35 @@ export default function Home() {
                   width={230}
                   height={115}
                   unoptimized
-                  className="logo-mark"
+                  className="block h-full w-full object-contain p-0 opacity-80 saturate-0 grayscale transition-opacity duration-200 ease-out hover:opacity-100"
                 />
               </li>
             ))}
           </ul>
         ) : (
-          <div className="logo-ticker-wrap mt-5" aria-label="Kundenlogos">
-            <div className="logo-ticker-track flex w-max flex-nowrap items-center">
+          <div
+            className="group relative mt-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
+            aria-label="Kundenlogos"
+          >
+            <div className="animate-logo-loop flex w-max flex-nowrap items-center gap-3 group-hover:[animation-play-state:paused]">
               {[0, 1].map((groupIndex) => (
                 <ul
                   key={groupIndex}
-                  className="logo-ticker-group m-0 flex list-none flex-nowrap items-center p-0"
+                  className="m-0 flex list-none flex-nowrap items-center gap-3 p-0"
                   aria-hidden={groupIndex === 1 ? "true" : undefined}
                 >
                   {clientLogos.map((logo) => (
-                    <li key={`${groupIndex}-${logo.name}`} className="logo-ticker-item">
+                    <li
+                      key={`${groupIndex}-${logo.name}`}
+                      className="relative inline-flex h-[115px] w-[230px] flex-none items-center justify-center overflow-hidden rounded-2xl border border-default bg-surface/70 p-0"
+                    >
                       <Image
                         src={logo.src}
                         alt={logo.alt}
                         width={230}
                         height={115}
                         unoptimized
-                        className="logo-mark"
+                        className="block h-full w-full object-contain p-0 opacity-80 saturate-0 grayscale transition-opacity duration-200 ease-out hover:opacity-100"
                       />
                     </li>
                   ))}

@@ -397,8 +397,12 @@ body {
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(-50% - 0.375rem));
+    transform: translateX(-50%);
   }
+}
+
+.animate-logo-loop {
+  animation: logo-ticker-scroll 40s linear infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -412,7 +416,8 @@ body {
     transform: none !important;
   }
 
-  .logo-ticker-track {
+  .logo-ticker-track,
+  .animate-logo-loop {
     animation: none !important;
     width: 100%;
   }
