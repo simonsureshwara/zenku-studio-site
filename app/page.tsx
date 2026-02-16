@@ -14,15 +14,25 @@ import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/c
 import { cn } from "@/lib/utils";
 
 const primaryMetric = {
-  value: "95+",
-  label: "Lighthouse Performance im Durchschnitt",
-  context: "ueber Live-Projekte in Aufbau und Skalierung",
+  value: "10+",
+  label: "Jahre Erfahrung",
+  context: "in Webdesign, Entwicklung und Online-Marketing",
 };
 
-const secondaryMetrics = [
+type SecondaryMetric = {
+  value: string;
+  label: string;
+  context?: string;
+};
+
+const secondaryMetrics: SecondaryMetric[] = [
   { value: "120+", label: "umgesetzte Projekte" },
   { value: "50+", label: "betreute Unternehmen" },
-  { value: "Messbare Ergebnisse", label: "Conversion-Verbesserungen bei Aufbau und Skalierung" },
+  {
+    value: "Case: bis zu 6x Umsatz in 24 Monaten",
+    label: "Beispiel Vivere Vital nach Relaunch und Angebotsausbau",
+    context: "Einzelfall, abhaengig von Angebot, Vertrieb und Umsetzung",
+  },
 ];
 
 const systemModels = [
@@ -165,13 +175,13 @@ export default function Home() {
               <motion.div style={{ y }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
               <div className="flex h-full flex-col justify-center px-8 py-12 md:px-14 md:py-16">
                 <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">
-                  Für Unternehmen, die online Kunden gewinnen wollen
+                  Fuer Unternehmen, die online Kunden gewinnen wollen
                 </p>
                 <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
                   Webdesign, Webentwicklung und Online-Marketing aus einer Hand
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg text-white/80">
-                  Wir bauen Websites, die Vertrauen schaffen und über SEO, Ads und Tracking messbar Anfragen bringen.
+                  Wir bauen Websites, die Vertrauen schaffen und mit SEO, Ads und Tracking messbare Anfragen erzeugen.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
@@ -212,6 +222,7 @@ export default function Home() {
                   >
                     <p className="text-3xl font-semibold md:text-4xl">{metric.value}</p>
                     <p className="mt-1.5 max-w-[28ch] text-sm text-muted">{metric.label}</p>
+                    {metric.context ? <p className="mt-1 text-xs text-muted">{metric.context}</p> : null}
                     <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/80 to-cyan-400/60" />
                   </article>
                 );
@@ -235,13 +246,13 @@ export default function Home() {
             {clientLogos.map((logo) => (
               <li
                 key={logo.name}
-                className="glass relative mx-auto flex h-[115px] w-[230px] items-center justify-center overflow-hidden rounded-2xl p-0"
+                className="glass mx-auto flex h-[115px] w-[230px] items-center justify-center overflow-hidden rounded-2xl p-0"
               >
                 <Image
                   src={logo.src}
                   alt={logo.alt}
-                  fill
-                  sizes="(max-width: 768px) 45vw, 22vw"
+                  width={230}
+                  height={115}
                   unoptimized
                   className="logo-mark"
                 />
@@ -258,8 +269,8 @@ export default function Home() {
                       <Image
                         src={logo.src}
                         alt={logo.alt}
-                        fill
-                        sizes="(max-width: 768px) 40vw, 14rem"
+                        width={230}
+                        height={115}
                         unoptimized
                         className="logo-mark"
                       />
