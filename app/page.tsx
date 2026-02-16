@@ -261,9 +261,13 @@ export default function Home() {
           </ul>
         ) : (
           <div className="logo-ticker-wrap mt-5" aria-label="Kundenlogos">
-            <div className="logo-ticker-track">
+            <div className="logo-ticker-track flex w-max flex-nowrap items-center">
               {[0, 1].map((groupIndex) => (
-                <ul key={groupIndex} className="logo-ticker-group" aria-hidden={groupIndex === 1 ? "true" : undefined}>
+                <ul
+                  key={groupIndex}
+                  className="logo-ticker-group m-0 flex list-none flex-nowrap items-center p-0"
+                  aria-hidden={groupIndex === 1 ? "true" : undefined}
+                >
                   {clientLogos.map((logo) => (
                     <li key={`${groupIndex}-${logo.name}`} className="logo-ticker-item">
                       <Image

@@ -12,7 +12,7 @@ export function ThemeToggle({ className }: { className?: string }) {
     () => true,
     () => false,
   );
-  const isDark = isClient ? resolvedTheme !== "light" : false;
+  const isDark = isClient ? resolvedTheme === "dark" : false;
   const label = isClient
     ? isDark
       ? "Helles Design aktivieren"
