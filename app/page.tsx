@@ -23,15 +23,21 @@ type SecondaryMetric = {
   value: string;
   label: string;
   context?: string;
+  spanClass: string;
+  valueClass?: string;
+  cardClass?: string;
 };
 
 const secondaryMetrics: SecondaryMetric[] = [
-  { value: "120+", label: "umgesetzte Projekte" },
-  { value: "50+", label: "betreute Unternehmen" },
+  { value: "120+", label: "umgesetzte Projekte", spanClass: "md:col-span-3" },
+  { value: "50+", label: "betreute Unternehmen", spanClass: "md:col-span-3" },
   {
     value: "Case: bis zu 6x Umsatz in 24 Monaten",
     label: "Beispiel Vivere Vital nach Relaunch und Angebotsausbau",
     context: "Einzelfall, abhaengig von Angebot, Vertrieb und Umsetzung",
+    spanClass: "md:col-span-6",
+    valueClass: "text-2xl md:text-4xl",
+    cardClass: "md:p-5",
   },
 ];
 
@@ -169,18 +175,18 @@ export default function Home() {
   return (
     <div className="mx-auto max-w-6xl space-y-[var(--section-gap)]">
       <ContentFrame fullHeight={false} contentPadding={false} className="w-full">
-        <div className="relative flex max-h-[100svh] flex-col">
+        <div className="relative flex flex-col">
           <section className="relative overflow-hidden rounded-[2rem] border border-default shadow-xl shadow-black/10">
-            <TubesBackground className="min-h-[520px] rounded-[2rem] md:min-h-[600px]">
+            <TubesBackground className="rounded-[2rem]">
               <motion.div style={{ y }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
-              <div className="flex h-full flex-col justify-center px-8 py-12 md:px-14 md:py-16">
+              <div className="mx-auto flex w-full max-w-5xl flex-col justify-center px-8 py-12 md:px-14 md:py-16 lg:px-16 lg:py-20">
                 <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">
                   Fuer Unternehmen, die online Kunden gewinnen wollen
                 </p>
                 <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
                   Webdesign, Webentwicklung und Online-Marketing aus einer Hand
                 </h1>
-                <p className="mt-6 max-w-2xl text-lg text-white/80">
+                <p className="mt-6 max-w-3xl text-lg text-white/80">
                   Wir bauen Websites, die Vertrauen schaffen und mit SEO, Ads und Tracking messbare Anfragen erzeugen.
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -212,15 +218,14 @@ export default function Home() {
               <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/90 to-cyan-400/70" />
             </article>
 
-            <div className="grid gap-[var(--hero-metrics-gap)] md:col-span-7 md:grid-cols-7">
-              {secondaryMetrics.map((metric, idx) => {
-                const spanClass = idx === 0 ? "md:col-span-4" : idx === 1 ? "md:col-span-3" : "md:col-span-7";
+            <div className="grid gap-[var(--hero-metrics-gap)] md:col-span-7 md:grid-cols-6">
+              {secondaryMetrics.map((metric) => {
                 return (
                   <article
                     key={metric.label}
-                    className={`ui-metric-card ui-metric-card--secondary ui-transition relative p-4 text-text md:p-4 ${spanClass}`}
+                    className={`ui-metric-card ui-metric-card--secondary ui-transition relative p-4 text-text md:p-4 ${metric.spanClass} ${metric.cardClass ?? ""}`}
                   >
-                    <p className="text-3xl font-semibold md:text-4xl">{metric.value}</p>
+                    <p className={`font-semibold ${metric.valueClass ?? "text-3xl md:text-4xl"}`}>{metric.value}</p>
                     <p className="mt-1.5 max-w-[28ch] text-sm text-muted">{metric.label}</p>
                     {metric.context ? <p className="mt-1 text-xs text-muted">{metric.context}</p> : null}
                     <span className="mt-3 block h-[2px] w-14 rounded-full bg-gradient-to-r from-violet-500/80 to-cyan-400/60" />
