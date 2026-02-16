@@ -28,7 +28,7 @@ export function buttonVariants({
     primary:
       "ui-shine text-white shadow-depth-2 bg-[linear-gradient(90deg,var(--brand-600),var(--accent-600))]",
     secondary:
-      "bg-surface-2 border border-default text-text shadow-depth-1 hover:shadow-depth-2",
+      "bg-surface-2 text-text shadow-depth-1 hover:shadow-depth-2",
     ghost: "bg-transparent text-text hover:bg-surface-2",
     destructive:
       "text-white shadow-depth-2 bg-[linear-gradient(90deg,var(--danger-solid),color-mix(in_oklab,var(--danger-solid)_72%,black))]",

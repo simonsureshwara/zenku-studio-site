@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion, type Variants } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/layout/theme-toggle";
 
 const links = [
   ["/", "Start"],
@@ -119,6 +120,8 @@ export function Navbar() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
+
           <button
             ref={menuButtonRef}
             type="button"
@@ -203,14 +206,17 @@ export function Navbar() {
                 >
                   Zenku Studio
                 </Link>
-                <button
-                  type="button"
-                  aria-label="Menue schliessen"
-                  onClick={closeMobileMenu}
-                  className="ui-transition inline-flex h-11 w-11 items-center justify-center rounded-full text-white/80 hover:bg-white/10 hover:text-white"
-                >
-                  <X className="h-6 w-6" />
-                </button>
+                <div className="flex items-center gap-2">
+                  <ThemeToggle className="h-11 w-11 border-white/20 bg-black/20 text-white/80 shadow-none hover:bg-white/10 hover:text-white" />
+                  <button
+                    type="button"
+                    aria-label="Menue schliessen"
+                    onClick={closeMobileMenu}
+                    className="ui-transition inline-flex h-11 w-11 items-center justify-center rounded-full text-white/80 hover:bg-white/10 hover:text-white"
+                  >
+                    <X className="h-6 w-6" />
+                  </button>
+                </div>
               </div>
 
               <motion.nav className="mt-10 flex flex-1 flex-col gap-6" variants={listVariants} initial="closed" animate="open" exit="closed">
