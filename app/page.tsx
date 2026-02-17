@@ -23,53 +23,14 @@ type SecondaryMetric = {
   cardClass?: string;
 };
 
-const systemModels = [
-  {
-    name: "Foundation",
-    price: "990 EUR / Monat",
-    audience: "Handwerker & kleinere Dienstleister mit klar definiertem Angebot.",
-    scope: [
-      "Bis zu 5 Hauptseiten (z. B. Start, Leistungen, Ueber uns)",
-      "Technisches Setup & Performance",
-      "SEO-Grundstruktur",
-      "Tracking & Analytics",
-      "Basis Ads Setup",
-      "Bis zu 4 Stunden strategische Betreuung pro Monat",
-    ],
-    positioning: "Solide digitale Grundlage ohne hohe Einmalinvestition.",
-    featured: false,
-  },
-  {
-    name: "Growth",
-    price: "2.190 EUR / Monat",
-    audience: "Wachsende Unternehmen mit mehreren Leistungen oder aktiver Kundengewinnung.",
-    scope: [
-      "Bis zu 10 Hauptseiten (z. B. Start, Leistungen, Ueber uns)",
-      "Erweiterte SEO-Strategie",
-      "Conversion-Optimierung",
-      "Laufende Kampagnenbetreuung",
-      "Detaillierte Reports",
-      "Bis zu 10 Stunden strategische Betreuung pro Monat",
-    ],
-    positioning: "Strukturiertes Wachstum mit aktiver Performance-Steuerung.",
-    featured: true,
-  },
-  {
-    name: "Performance",
-    price: "Individuell nach Analyse",
-    audience: "Komplexe Strukturen, mehrere Standorte oder skalierende Unternehmen.",
-    scope: [
-      "Individuelle Systemanalyse",
-      "Flexible oder unbegrenzte Seitenstruktur",
-      "Passende Architektur fuer Ihr Ziel",
-      "Erweiterte Funnel- & Tracking-Systeme",
-      "Performance-Marketing auf mehreren Kanaelen",
-      "Flexibles Stundenkontingent",
-    ],
-    positioning: "Strategische Systemfuehrung auf hoechstem Niveau.",
-    featured: false,
-  },
-];
+type SystemModel = {
+  name: string;
+  price: string;
+  audience: string;
+  scope: string[];
+  positioning: string;
+  featured: boolean;
+};
 
 function ContentFrame({
   className,
@@ -173,6 +134,8 @@ export function HomePage() {
     photo: "/testimonials/torsten-acht.avif",
     photoAlt: t("testimonial.photoAlt"),
   };
+
+  const systemModels = t.raw("models.items") as SystemModel[];
 
   return (
     <div className="mx-auto max-w-6xl space-y-[var(--section-gap)]">

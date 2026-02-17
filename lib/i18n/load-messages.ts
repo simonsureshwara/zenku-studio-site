@@ -10,5 +10,5 @@ const localeMessages = {
 export type AppLocale = keyof typeof localeMessages;
 
 export async function loadMessages(locale: AppLocale): Promise<AbstractIntlMessages> {
-  return localeMessages[locale];
+  return localeMessages[locale] as unknown as AbstractIntlMessages;
 }
