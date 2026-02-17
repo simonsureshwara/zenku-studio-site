@@ -1,0 +1,122 @@
+{
+  "Home": {
+    "hero": {
+      "eyebrow": "For local service businesses, practices and trades",
+      "title": "Web design, development and online marketing in one system",
+      "subtitle": "You get a website that generates inquiries, a clean setup for visibility, and one accountable partner for delivery.",
+      "ctaPrimary": "Book a call",
+      "ctaSecondary": "View services & models"
+    },
+    "metrics": {
+      "primary": {
+        "value": "10+",
+        "label": "Years of experience",
+        "context": "in web design, development and online marketing"
+      },
+      "secondary": {
+        "projects": {
+          "value": "120+",
+          "label": "delivered projects"
+        },
+        "companies": {
+          "value": "50+",
+          "label": "supported businesses"
+        },
+        "case": {
+          "value": "Case: up to 6x revenue in 24 months",
+          "label": "Example: Vivere Vital after relaunch and offer expansion",
+          "context": "Single case, depends on offer quality, sales execution and implementation"
+        }
+      }
+    },
+    "logos": {
+      "eyebrow": "Trust from real projects",
+      "title": "Businesses working with Zenku",
+      "subtitle": "Selected clients in services, healthcare, SaaS and e-commerce.",
+      "ariaLabel": "Client logos"
+    },
+    "problem": {
+      "title": "You want a website. But who handles visibility, maintenance and results over time?",
+      "imageAlt": "Successful team in a professional work setting",
+      "point1": "Different contacts for design, ads and technical work.",
+      "point2": "Many voices. No clear system.",
+      "point3": "No reliable overview of progress and performance."
+    },
+    "solution": {
+      "title": "One point of contact. One system. Clear ownership.",
+      "imageAlt": "Relieved business owner in a professional setting",
+      "benefit1": "Website, ads, tracking and maintenance work together.",
+      "benefit2": "Monthly planning instead of project chaos.",
+      "benefit3": "Measurable steps instead of guesswork.",
+      "ctaPrimary": "Schedule a call",
+      "ctaSecondary": "View services & pricing"
+    },
+    "process": {
+      "title": "How collaboration works",
+      "lead": "Three steps. One contact person. One clear system.",
+      "steps": {
+        "clarity": {
+          "title": "Clarity",
+          "description": "We define target audience, offer and priorities so it is clear what matters most online."
+        },
+        "system": {
+          "title": "System",
+          "description": "We build or improve your website and align tracking, SEO and campaigns cleanly."
+        },
+        "growth": {
+          "title": "Growth",
+          "description": "We support continuously, improve with focus and make decisions based on data."
+        }
+      },
+      "cta": "Schedule a call"
+    },
+    "testimonial": {
+      "title": "What my clients say",
+      "quote": "Simon stepped in after my previous developer had to stop. Within a few days, he turned my half-finished website into a fully functional course platform. I am very grateful for his speed, support and reliability.",
+      "name": "Torsten Acht",
+      "website": "teachmeyoga.de",
+      "photoAlt": "Portrait of Torsten Acht"
+    },
+    "modelsIntro": {
+      "title": "The right system for your growth",
+      "lead": "A website in a monthly model, with support, optimization and clear structure.",
+      "cta": "Schedule a call"
+    },
+    "outcomes": {
+      "title": "Services with clear business impact",
+      "item1": {
+        "title": "Websites that generate inquiries",
+        "description": "Clear page structure, understandable user guidance and a setup that turns interest into concrete inquiries."
+      },
+      "item2": {
+        "title": "Technical SEO as a stable base",
+        "description": "Indexability, speed and structure as the basis for predictable organic visibility."
+      },
+      "item3": {
+        "title": "Clean tracking & analytics",
+        "description": "A measurable data foundation with clear events, funnels and reporting."
+      },
+      "item4": {
+        "title": "Continuous conversion optimization",
+        "description": "Regular improvement of key pages based on behavior data and business priorities."
+      },
+      "item5": {
+        "title": "Long-term growth support",
+        "description": "A structured monthly model with clear goals, central visibility and continuous improvement."
+      }
+    },
+    "team": {
+      "title": "Structure instead of dependency on one person",
+      "paragraph1": "Zenku Studio works with an international network of strategists, designers, developers and performance specialists. Collaboration is managed centrally with one fixed contact person.",
+      "paragraph2": "Simon Sureshwara leads each project as Lead Strategist and point of contact for strategy, prioritization and delivery quality."
+    },
+    "faq": {
+      "title": "Frequently asked questions"
+    },
+    "finalCta": {
+      "title": "Let's build your digital infrastructure in a structured way.",
+      "subtitle": "In the first call, we clarify fit, realistic potential and how implementation is organized cleanly.",
+      "button": "Schedule a call"
+    }
+  }
+}

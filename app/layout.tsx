@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { NextIntlClientProvider } from "next-intl";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { Navbar } from "@/components/layout/navbar";
 import { PageTransition } from "@/components/layout/page-transition";
 import { JsonLd } from "@/components/seo/json-ld";
+import { loadMessages } from "@/lib/i18n/load-messages";
 import { defaultMetadata, jsonLd } from "@/lib/seo";
 
 const inter = localFont({
@@ -27,25 +29,32 @@ const playfair = localFont({
 
 export const metadata: Metadata = defaultMetadata;
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const messages = await loadMessages("de");
+
   return (
     <html lang="de" suppressHydrationWarning>
+      <head>
+        <meta charSet="utf-8" />
+      </head>
       <body
         suppressHydrationWarning
         className={`${inter.variable} ${playfair.variable} antialiased`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <main className="px-4 pb-24 pt-24 md:px-6 lg:px-8">
-            <PageTransition>{children}</PageTransition>
-          </main>
-          <JsonLd data={jsonLd.organization} />
-          <JsonLd data={jsonLd.website} />
-        </ThemeProvider>
+        <NextIntlClientProvider locale="de" messages={messages}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Navbar />
+            <main className="px-4 pb-24 pt-24 md:px-6 lg:px-8">
+              <PageTransition>{children}</PageTransition>
+            </main>
+            <JsonLd data={jsonLd.organization} />
+            <JsonLd data={jsonLd.website} />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

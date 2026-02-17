@@ -1,0 +1,122 @@
+{
+  "Home": {
+    "hero": {
+      "eyebrow": "Fuer Handwerk, Praxen und Dienstleister",
+      "title": "Webdesign, Entwicklung und Online-Marketing aus einer Hand",
+      "subtitle": "Sie erhalten eine Website, die Anfragen bringt, ein sauberes Setup fuer Sichtbarkeit und einen festen Ansprechpartner fuer die Umsetzung.",
+      "ctaPrimary": "Call buchen",
+      "ctaSecondary": "Leistungen & Modelle ansehen"
+    },
+    "metrics": {
+      "primary": {
+        "value": "10+",
+        "label": "Jahre Erfahrung",
+        "context": "in Webdesign, Entwicklung und Online-Marketing"
+      },
+      "secondary": {
+        "projects": {
+          "value": "120+",
+          "label": "umgesetzte Projekte"
+        },
+        "companies": {
+          "value": "50+",
+          "label": "betreute Unternehmen"
+        },
+        "case": {
+          "value": "Case: bis zu 6x Umsatz in 24 Monaten",
+          "label": "Beispiel Vivere Vital nach Relaunch und Angebotsausbau",
+          "context": "Einzelfall, abhaengig von Angebot, Vertrieb und Umsetzung"
+        }
+      }
+    },
+    "logos": {
+      "eyebrow": "Vertrauen aus realen Projekten",
+      "title": "Unternehmen, die mit Zenku arbeiten",
+      "subtitle": "Ausgewaehlte Kunden aus Dienstleistung, Gesundheit, SaaS und E-Commerce.",
+      "ariaLabel": "Kundenlogos"
+    },
+    "problem": {
+      "title": "Sie moechten eine Website. Aber wer kuemmert sich dauerhaft um Sichtbarkeit, Wartung und Ergebnisse?",
+      "imageAlt": "Erfolgreiches Team in einem professionellen Arbeitsumfeld",
+      "point1": "Fuer Design, Ads und Technik immer neue Ansprechpartner.",
+      "point2": "Viele Stimmen. Kein klares System.",
+      "point3": "Kein sauberer Ueberblick ueber Fortschritt und Wirkung."
+    },
+    "solution": {
+      "title": "Ein Ansprechpartner. Ein System. Klare Verantwortung.",
+      "imageAlt": "Erleichterte Unternehmerin in einem professionellen Umfeld",
+      "benefit1": "Website, Ads, Tracking und Wartung greifen zusammen.",
+      "benefit2": "Monatlich planbar statt laufendem Projekt-Chaos.",
+      "benefit3": "Messbare Schritte statt Bauchgefuehl.",
+      "ctaPrimary": "Termin vereinbaren",
+      "ctaSecondary": "Leistungen & Preise ansehen"
+    },
+    "process": {
+      "title": "So laeuft die Zusammenarbeit ab",
+      "lead": "Drei Schritte. Ein Ansprechpartner. Ein klares System.",
+      "steps": {
+        "clarity": {
+          "title": "Klarheit",
+          "description": "Wir klaeren Zielgruppe, Angebot und Prioritaeten. Damit von Anfang an klar ist, was online wirklich zaehlt."
+        },
+        "system": {
+          "title": "System",
+          "description": "Wir bauen neu oder optimieren bestehende Seiten und richten Tracking, SEO und Kampagnen sauber aus."
+        },
+        "growth": {
+          "title": "Wachstum",
+          "description": "Wir betreuen laufend, verbessern gezielt und steuern Entscheidungen mit Daten statt Annahmen."
+        }
+      },
+      "cta": "Termin vereinbaren"
+    },
+    "testimonial": {
+      "title": "Was meine Kunden sagen",
+      "quote": "Simon ist eingesprungen, als mein vorheriger Entwickler aufgegeben hat. Innerhalb weniger Tage hat er meine halbfertige Seite in eine voll funktionsfaehige Kursplattform verwandelt. Ich bin ihm fuer seine Geschwindigkeit, Unterstuetzung und Verlaesslichkeit unglaublich dankbar.",
+      "name": "Torsten Acht",
+      "website": "teachmeyoga.de",
+      "photoAlt": "Portraet von Torsten Acht"
+    },
+    "modelsIntro": {
+      "title": "Das passende System fuer Ihr Wachstum",
+      "lead": "Eine Website im monatlichen Modell. Mit Betreuung, Optimierung und klarer Struktur.",
+      "cta": "Termin vereinbaren"
+    },
+    "outcomes": {
+      "title": "Leistungen mit klarem Geschaeftsnutzen",
+      "item1": {
+        "title": "Websites, die Anfragen erzeugen",
+        "description": "Klare Seitenstruktur, nachvollziehbare Nutzerfuehrung und ein Setup, das Interessenten in konkrete Anfragen ueberfuehrt."
+      },
+      "item2": {
+        "title": "Technische SEO als stabile Basis",
+        "description": "Indexierbarkeit, Geschwindigkeit und Struktur als Grundlage fuer planbare Sichtbarkeit in der organischen Suche."
+      },
+      "item3": {
+        "title": "Sauberes Tracking & Analytics",
+        "description": "Messbare Datenbasis fuer bessere Entscheidungen mit klaren Ereignissen, Funnels und Reportings."
+      },
+      "item4": {
+        "title": "Kontinuierliche Conversion-Optimierung",
+        "description": "Regelmaessige Verbesserung von Schluesselseiten auf Basis von Verhalten, Daten und geschaeftlicher Prioritaet."
+      },
+      "item5": {
+        "title": "Langfristige Wachstumsbegleitung",
+        "description": "Strukturiertes Monatsmodell mit klaren Zielen, zentralem Ueberblick und laufender Weiterentwicklung."
+      }
+    },
+    "team": {
+      "title": "Struktur statt Einzelperson",
+      "paragraph1": "Zenku Studio arbeitet mit einem internationalen Netzwerk aus Strategen, Designern, Entwicklern und Performance-Spezialisten. Die Zusammenarbeit wird zentral gesteuert, mit einem festen Ansprechpartner.",
+      "paragraph2": "Simon Sureshwara begleitet jedes Projekt als Lead Strategist und Ansprechpartner fuer Strategie, Priorisierung und Ergebnisqualitaet."
+    },
+    "faq": {
+      "title": "Haeufige Fragen"
+    },
+    "finalCta": {
+      "title": "Lassen Sie uns Ihre digitale Infrastruktur strukturiert aufsetzen.",
+      "subtitle": "Im Erstgespraech klaeren wir, ob Sie hier richtig sind, welches Potenzial realistisch ist und wie die Umsetzung sauber organisiert wird.",
+      "button": "Termin vereinbaren"
+    }
+  }
+}

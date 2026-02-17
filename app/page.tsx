@@ -1,8 +1,9 @@
 "use client";
 
 import { type ReactNode } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { Reveal } from "@/components/ui/reveal";
@@ -13,12 +14,6 @@ import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 
-const primaryMetric = {
-  value: "10+",
-  label: "Jahre Erfahrung",
-  context: "in Webdesign, Entwicklung und Online-Marketing",
-};
-
 type SecondaryMetric = {
   value: string;
   label: string;
@@ -27,19 +22,6 @@ type SecondaryMetric = {
   valueClass?: string;
   cardClass?: string;
 };
-
-const secondaryMetrics: SecondaryMetric[] = [
-  { value: "120+", label: "umgesetzte Projekte", spanClass: "md:col-span-3" },
-  { value: "50+", label: "betreute Unternehmen", spanClass: "md:col-span-3" },
-  {
-    value: "Case: bis zu 6x Umsatz in 24 Monaten",
-    label: "Beispiel Vivere Vital nach Relaunch und Angebotsausbau",
-    context: "Einzelfall, abhaengig von Angebot, Vertrieb und Umsetzung",
-    spanClass: "md:col-span-6",
-    valueClass: "text-2xl md:text-4xl",
-    cardClass: "md:p-5",
-  },
-];
 
 const systemModels = [
   {
@@ -89,60 +71,6 @@ const systemModels = [
   },
 ];
 
-const serviceOutcomes = [
-  {
-    title: "Websites, die Anfragen erzeugen",
-    description:
-      "Klare Seitenstruktur, nachvollziehbare Nutzerfuehrung und ein Setup, das Interessenten in konkrete Anfragen ueberfuehrt.",
-  },
-  {
-    title: "Technische SEO als stabile Basis",
-    description:
-      "Indexierbarkeit, Geschwindigkeit und Struktur als Grundlage fuer planbare Sichtbarkeit in der organischen Suche.",
-  },
-  {
-    title: "Sauberes Tracking & Analytics",
-    description:
-      "Messbare Datenbasis fuer bessere Entscheidungen mit klaren Ereignissen, Funnels und Reportings.",
-  },
-  {
-    title: "Kontinuierliche Conversion-Optimierung",
-    description:
-      "Regelmaessige Verbesserung von Schluesselseiten auf Basis von Verhalten, Daten und geschaeftlicher Prioritaet.",
-  },
-  {
-    title: "Langfristige Wachstumsbegleitung",
-    description:
-      "Strukturiertes Monatsmodell mit klaren Zielen, zentralem Ueberblick und laufender Weiterentwicklung.",
-  },
-];
-
-const processSteps = [
-  {
-    title: "Klarheit",
-    description:
-      "Wir finden gemeinsam heraus, was Ihr Angebot online verkaufen soll - und was dafuer jetzt wirklich zaehlt.",
-  },
-  {
-    title: "System",
-    description:
-      "Wir bauen Ihre Website neu oder optimieren bestehende Seiten und richten Tracking, SEO und Kampagnen sauber aus.",
-  },
-  {
-    title: "Wachstum",
-    description:
-      "Wir betreuen fortlaufend, testen gezielt und verbessern Sichtbarkeit, Conversion und Performance anhand klarer Daten.",
-  },
-];
-
-const testimonial = {
-  quote:
-    "Simon ist eingesprungen, als mein vorheriger Entwickler aufgegeben hat. Innerhalb weniger Tage hat er meine halbfertige Seite in eine voll funktionsfaehige Kursplattform verwandelt. Ich bin ihm fuer seine Geschwindigkeit, Unterstuetzung und Verlaesslichkeit unglaublich dankbar.",
-  name: "Torsten Acht",
-  website: "teachmeyoga.de",
-  photo: "/testimonials/torsten-acht.avif",
-};
-
 function ContentFrame({
   className,
   children,
@@ -167,10 +95,84 @@ function ContentFrame({
   );
 }
 
-export default function Home() {
+export function HomePage() {
+  const t = useTranslations("Home");
   const { scrollY } = useScroll();
   const reduced = useReducedMotion();
   const y = useTransform(scrollY, [0, 500], [0, reduced ? 0 : 60]);
+
+  const primaryMetric = {
+    value: t("metrics.primary.value"),
+    label: t("metrics.primary.label"),
+    context: t("metrics.primary.context"),
+  };
+
+  const secondaryMetrics: SecondaryMetric[] = [
+    {
+      value: t("metrics.secondary.projects.value"),
+      label: t("metrics.secondary.projects.label"),
+      spanClass: "md:col-span-3",
+    },
+    {
+      value: t("metrics.secondary.companies.value"),
+      label: t("metrics.secondary.companies.label"),
+      spanClass: "md:col-span-3",
+    },
+    {
+      value: t("metrics.secondary.case.value"),
+      label: t("metrics.secondary.case.label"),
+      context: t("metrics.secondary.case.context"),
+      spanClass: "md:col-span-6",
+      valueClass: "text-2xl md:text-4xl",
+      cardClass: "md:p-5",
+    },
+  ];
+
+  const processSteps = [
+    {
+      title: t("process.steps.clarity.title"),
+      description: t("process.steps.clarity.description"),
+    },
+    {
+      title: t("process.steps.system.title"),
+      description: t("process.steps.system.description"),
+    },
+    {
+      title: t("process.steps.growth.title"),
+      description: t("process.steps.growth.description"),
+    },
+  ];
+
+  const serviceOutcomes = [
+    {
+      title: t("outcomes.item1.title"),
+      description: t("outcomes.item1.description"),
+    },
+    {
+      title: t("outcomes.item2.title"),
+      description: t("outcomes.item2.description"),
+    },
+    {
+      title: t("outcomes.item3.title"),
+      description: t("outcomes.item3.description"),
+    },
+    {
+      title: t("outcomes.item4.title"),
+      description: t("outcomes.item4.description"),
+    },
+    {
+      title: t("outcomes.item5.title"),
+      description: t("outcomes.item5.description"),
+    },
+  ];
+
+  const testimonial = {
+    quote: t("testimonial.quote"),
+    name: t("testimonial.name"),
+    website: t("testimonial.website"),
+    photo: "/testimonials/torsten-acht.avif",
+    photoAlt: t("testimonial.photoAlt"),
+  };
 
   return (
     <div className="mx-auto max-w-6xl space-y-[var(--section-gap)]">
@@ -180,21 +182,15 @@ export default function Home() {
             <TubesBackground className="rounded-[2rem]">
               <motion.div style={{ y }} className="absolute -right-20 -top-20 h-72 w-72 rounded-full bg-violet-500/20 blur-3xl" />
               <div className="mx-auto flex w-full max-w-5xl flex-col justify-center px-8 py-12 md:px-14 md:py-16 lg:px-16 lg:py-20">
-                <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">
-                  Fuer Unternehmen, die online Kunden gewinnen wollen
-                </p>
-                <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
-                  Webdesign, Webentwicklung und Online-Marketing aus einer Hand
-                </h1>
-                <p className="mt-6 max-w-3xl text-lg text-white/80">
-                  Wir bauen Websites, die Vertrauen schaffen und mit SEO, Ads und Tracking messbare Anfragen erzeugen.
-                </p>
+                <p className="mb-4 text-sm uppercase tracking-[0.2em] text-white/70">{t("hero.eyebrow")}</p>
+                <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">{t("hero.title")}</h1>
+                <p className="mt-6 max-w-3xl text-lg text-white/80">{t("hero.subtitle")}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     className={cn(buttonVariants({ variant: "primary", size: "lg" }), "w-full justify-center sm:w-auto sm:min-w-[22rem]")}
                     href="/contact"
                   >
-                    Call buchen
+                    {t("hero.ctaPrimary")}
                   </Link>
                   <Link
                     className={cn(
@@ -203,7 +199,7 @@ export default function Home() {
                     )}
                     href="/pricing"
                   >
-                    Leistungen & Modelle ansehen
+                    {t("hero.ctaSecondary")}
                   </Link>
                 </div>
               </div>
@@ -238,13 +234,9 @@ export default function Home() {
       </ContentFrame>
 
       <section className="py-16 md:py-24 lg:py-28">
-        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted">Vertrauen aus realen Projekten</p>
-        <h2 className="mt-2 text-center text-xl font-semibold leading-[1.2] text-text md:text-2xl">
-          Unternehmen, die mit Zenku arbeiten
-        </h2>
-        <p className="mx-auto mt-2 max-w-3xl text-center text-sm text-muted">
-          Ausgewaehlte Kunden aus Dienstleistung, Gesundheit, SaaS und E-Commerce.
-        </p>
+        <p className="text-center text-xs uppercase tracking-[0.2em] text-muted">{t("logos.eyebrow")}</p>
+        <h2 className="mt-2 text-center text-xl font-semibold leading-[1.2] text-text md:text-2xl">{t("logos.title")}</h2>
+        <p className="mx-auto mt-2 max-w-3xl text-center text-sm text-muted">{t("logos.subtitle")}</p>
 
         {reduced ? (
           <ul className="mt-5 grid grid-cols-2 gap-3 md:grid-cols-4">
@@ -267,7 +259,7 @@ export default function Home() {
         ) : (
           <div
             className="group relative mt-5 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]"
-            aria-label="Kundenlogos"
+            aria-label={t("logos.ariaLabel")}
           >
             <div className="animate-logo-loop flex w-max flex-nowrap items-center gap-3 group-hover:[animation-play-state:paused]">
               {[0, 1].map((groupIndex) => (
@@ -302,16 +294,9 @@ export default function Home() {
         <ContentFrame>
           <div className="grid items-center gap-6 lg:grid-cols-2">
             <div>
-              <h2 className="section-heading max-w-[27ch]">
-                Sie moechten eine Website - aber wer kuemmert sich danach um Sichtbarkeit, Wartung und
-                Wachstum?
-              </h2>
+              <h2 className="section-heading max-w-[27ch]">{t("problem.title")}</h2>
               <ul className="mt-8 space-y-4">
-                {[
-                  "Fuer Design, Ads und Technik immer neue Ansprechpartner.",
-                  "Viele Stimmen. Kein System.",
-                  "Kein klarer Ueberblick.",
-                ].map((point) => (
+                {[t("problem.point1"), t("problem.point2"), t("problem.point3")].map((point) => (
                   <li key={point} className="py-2">
                     <p className="flex items-start gap-3 text-lg font-medium leading-relaxed text-text">
                       <XCircle className="mt-0.5 h-5 w-5 shrink-0 text-[var(--danger-solid)]" strokeWidth={1.9} />
@@ -325,7 +310,7 @@ export default function Home() {
             <aside className="glass relative overflow-hidden rounded-[2rem] border border-default">
               <img
                 src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1400&q=80"
-                alt="Erfolgreiches Team in einem professionellen Arbeitsumfeld"
+                alt={t("problem.imageAlt")}
                 loading="lazy"
                 decoding="async"
                 className="h-full min-h-[440px] w-full object-cover"
@@ -341,7 +326,7 @@ export default function Home() {
             <aside className="glass relative overflow-hidden rounded-[2rem] border border-default">
               <img
                 src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1400&q=80"
-                alt="Erleichterte Unternehmerin in einem professionellen Umfeld"
+                alt={t("solution.imageAlt")}
                 loading="lazy"
                 decoding="async"
                 className="h-full min-h-[440px] w-full object-cover"
@@ -349,15 +334,9 @@ export default function Home() {
             </aside>
 
             <div>
-              <h2 className="section-heading max-w-[26ch]">
-                Ein Ansprechpartner. Ein System. Klarer Ueberblick.
-              </h2>
+              <h2 className="section-heading max-w-[26ch]">{t("solution.title")}</h2>
               <ul className="mt-8 space-y-4">
-                {[
-                  "Website, Ads, Tracking und Wartung aus einer Hand.",
-                  "Monatlich planbar statt Projekt-Chaos.",
-                  "Struktur statt Einzelmassnahmen.",
-                ].map((benefit) => (
+                {[t("solution.benefit1"), t("solution.benefit2"), t("solution.benefit3")].map((benefit) => (
                   <li key={benefit} className="py-2">
                     <p className="flex items-start gap-3 text-lg font-medium leading-relaxed text-text">
                       <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-[var(--success-solid)]" strokeWidth={1.9} />
@@ -368,10 +347,10 @@ export default function Home() {
               </ul>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link className={buttonVariants({ variant: "primary", size: "md" })} href="/contact">
-                  Call buchen
+                  {t("solution.ctaPrimary")}
                 </Link>
                 <Link className={buttonVariants({ variant: "secondary", size: "md" })} href="/pricing">
-                  Leistungen & Preise ansehen
+                  {t("solution.ctaSecondary")}
                 </Link>
               </div>
             </div>
@@ -381,10 +360,8 @@ export default function Home() {
 
       <Reveal>
         <ContentFrame className="glass rounded-[2rem] p-8 shadow-depth-1 md:p-12">
-          <h2 className="section-heading">So laeuft die Zusammenarbeit ab</h2>
-          <p className="section-lead mt-3 max-w-3xl">
-            Drei Schritte. Ein Ansprechpartner. Ein klares System.
-          </p>
+          <h2 className="section-heading">{t("process.title")}</h2>
+          <p className="section-lead mt-3 max-w-3xl">{t("process.lead")}</p>
           <ol className="mt-8 grid gap-5 md:grid-cols-3">
             {processSteps.map((step, idx) => (
               <Card key={step.title} className="p-5">
@@ -398,7 +375,7 @@ export default function Home() {
           </ol>
           <div className="mt-8">
             <Link className={buttonVariants({ variant: "primary", size: "md" })} href="/contact">
-              Unverbindlich starten
+              {t("process.cta")}
             </Link>
           </div>
         </ContentFrame>
@@ -407,14 +384,14 @@ export default function Home() {
       <Reveal>
         <ContentFrame>
           <section className="mx-auto max-w-4xl text-center">
-            <h2 className="section-heading">Was meine Kunden sagen</h2>
+            <h2 className="section-heading">{t("testimonial.title")}</h2>
             <blockquote className="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-muted md:text-2xl md:leading-[1.45]">
-              {`${testimonial.quote}`}
+              {testimonial.quote}
             </blockquote>
             <div className="mt-10 inline-flex items-center gap-4 text-left">
               <img
                 src={testimonial.photo}
-                alt={`Portraet von ${testimonial.name}`}
+                alt={testimonial.photoAlt}
                 loading="lazy"
                 decoding="async"
                 className="h-16 w-16 rounded-full border border-default object-cover shadow-depth-1"
@@ -431,10 +408,8 @@ export default function Home() {
       <Reveal>
         <ContentFrame>
           <div className="max-w-3xl">
-            <h2 className="section-heading">Das passende System fuer Ihr Wachstum</h2>
-            <p className="section-lead mt-3">
-              Eine Website im monatlichen Modell. Mit Betreuung, Optimierung und klarer Struktur.
-            </p>
+            <h2 className="section-heading">{t("modelsIntro.title")}</h2>
+            <p className="section-lead mt-3">{t("modelsIntro.lead")}</p>
           </div>
           <div className="mt-8 grid gap-5 md:grid-cols-3">
             {systemModels.map((model) => (
@@ -459,7 +434,7 @@ export default function Home() {
           </div>
           <div className="mt-8">
             <Link className={buttonVariants({ variant: "primary", size: "md" })} href="/contact">
-              Unverbindlich starten
+              {t("modelsIntro.cta")}
             </Link>
           </div>
         </ContentFrame>
@@ -467,7 +442,7 @@ export default function Home() {
 
       <Reveal>
         <ContentFrame>
-          <h2 className="section-heading">Leistungen mit klarem Geschaeftsnutzen</h2>
+          <h2 className="section-heading">{t("outcomes.title")}</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             {serviceOutcomes.map((service) => (
               <Card key={service.title} className="ui-elevate p-6">
@@ -481,42 +456,34 @@ export default function Home() {
 
       <Reveal>
         <ContentFrame>
-          <h2 className="section-heading">Struktur statt Einzelperson</h2>
-          <p className="mt-4 max-w-4xl text-muted">
-            Zenku Studio arbeitet mit einem internationalen Netzwerk aus Strategen, Designern,
-            Entwicklern und Performance-Spezialisten. Die Zusammenarbeit wird zentral gesteuert, mit
-            einem festen Ansprechpartner.
-          </p>
-          <p className="mt-4 max-w-4xl text-muted">
-            Simon Sureshwara begleitet jedes Projekt als Lead Strategist und Ansprechpartner fuer
-            Strategie, Priorisierung und Ergebnisqualitaet.
-          </p>
+          <h2 className="section-heading">{t("team.title")}</h2>
+          <p className="mt-4 max-w-4xl text-muted">{t("team.paragraph1")}</p>
+          <p className="mt-4 max-w-4xl text-muted">{t("team.paragraph2")}</p>
         </ContentFrame>
       </Reveal>
 
       <Reveal>
         <ContentFrame>
-          <h2 className="section-heading mb-6">Haeufige Fragen</h2>
+          <h2 className="section-heading mb-6">{t("faq.title")}</h2>
           <FaqAccordion items={faqs} />
         </ContentFrame>
       </Reveal>
 
       <Reveal>
         <ContentFrame className="glass rounded-[2rem] p-8 text-center shadow-depth-1 md:p-12">
-          <h2 className="section-heading">
-            Lassen Sie uns Ihre digitale Infrastruktur strukturieren.
-          </h2>
-          <p className="mx-auto mt-4 max-w-3xl text-muted">
-            In einem unverbindlichen Analysegespraech klaeren wir Ausgangslage, Potenziale und das
-            passende Modell fuer Ihr Unternehmen.
-          </p>
+          <h2 className="section-heading">{t("finalCta.title")}</h2>
+          <p className="mx-auto mt-4 max-w-3xl text-muted">{t("finalCta.subtitle")}</p>
           <div className="mt-8">
             <Link className={cn(buttonVariants({ variant: "primary", size: "lg" }), "mx-auto")} href="/contact">
-              Call buchen vereinbaren
+              {t("finalCta.button")}
             </Link>
           </div>
         </ContentFrame>
       </Reveal>
     </div>
   );
+}
+
+export default function Home() {
+  return <HomePage />;
 }
